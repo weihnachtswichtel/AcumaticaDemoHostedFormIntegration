@@ -21,9 +21,9 @@ It is attempted to recreate most complex scenario and therefore:
    to the SameSite defaults of modern browsers.
    
 The content of this repo includes:
-    The codefiles wihe implementation of nessecary interfaces for Hosted (Payment) Form functionality
-    Custom Payment Connector - Frames/CLPaymentConnector 
-    Customization project with CC-Plugin that containes compiled sources and custom frame, that can be deployed and tested
+1. The codefiles wihe implementation of nessecary interfaces for Hosted (Payment) Form functionality
+2. Custom Payment Connector - Frames/CLPaymentConnector 
+3. Customization project with CC-Plugin that containes compiled sources and custom frame, that can be deployed and tested
     
 The project does not contain the fuctionality to demonatrate the transactiong of already "vaulted" cards like capturing previously authorized tranaction as DoTransaction is not implemented.
 It also not including the any other implementation of methods that would enable actions like Extrenally Authorized, Manual Capture, Validate CC, etc as it is not in the scope of this project.
