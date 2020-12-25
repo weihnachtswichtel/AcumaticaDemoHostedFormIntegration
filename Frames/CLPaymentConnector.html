@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>CL Payment Communicator</title>
+<script type="text/javascript">
+
+	function getGetParamsAsJSON(){
+		var urlParams = new URLSearchParams(window.location.search);
+		return Object.fromEntries(new URLSearchParams(window.location.search));
+	}
+
+	function getDummyProcessingCenterResponse(){
+		//Since we have no PC side that will always return us card values by the token, lets hide values in token itself
+		var expDate = Date.now() + 31536000000;														//ExpDate in a year from today in ms UTC
+		var lastFour = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);			//Random 4 digits as LastFour
+		var token = document.getElementById("outRequest").value.replace(/[^a-z0-9]/gi,'');			//Free defined alfanumeric string in the HostedForm
+		if(!token){
+			token="dummyToken";
+		}
+		token += "-" + expDate + "-" + lastFour;													//For demo purposes all the CC values presentes in token
+
+		var data = Object.fromEntries(new URLSearchParams(window.location.search));					//Convert all the received GET Parameters in the JSON
+		data.Token = token;																			//Add the token to send it back to Acumatica 
+		return JSON.stringify(data);
+	}
+	
+	
+	
+</script>
+</head>
+<body>
+<div id="inRequest"></div>
+<div>
+ <input type="text" size="40" id="outRequest"> <br>
+ <input type="button" value="Send back to Acumatica" onclick="window.parent.px_callback.paymentCallback('action=transactResponse&response=' + getDummyProcessingCenterResponse());">
+</div>
+</body>
+<script type="text/javascript">
+	document.getElementById("inRequest").innerHTML = "Parameters received from Acumatica: </br></br>" + " " + window.location.search.substring(1).replaceAll('&','<br>');
+</script>
+</html>

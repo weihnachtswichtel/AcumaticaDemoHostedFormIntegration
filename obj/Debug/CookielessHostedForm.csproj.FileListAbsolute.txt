@@ -1,0 +1,9 @@
+C:\Acumatica\20R2\Bin\CookielessHostedForm.dll
+C:\Acumatica\20R2\Bin\CookielessHostedForm.pdb
+C:\Acumatica\20R2\App_Data\Projects\CookielessHostedForm\CookielessHostedForm\obj\Debug\CookielessHostedForm.csproj.CoreCompileInputs.cache
+C:\Acumatica\20R2\App_Data\Projects\CookielessHostedForm\CookielessHostedForm\obj\Debug\CookielessHostedForm.csproj.CopyComplete
+C:\Acumatica\20R2\App_Data\Projects\CookielessHostedForm\CookielessHostedForm\obj\Debug\CookielessHostedForm.dll
+C:\Acumatica\20R2\App_Data\Projects\CookielessHostedForm\CookielessHostedForm\obj\Debug\CookielessHostedForm.pdb
+C:\Acumatica\20R2\App_Data\Projects\CookielessHostedForm\CookielessHostedForm\obj\Debug\CookielessHostedForm.csprojAssemblyReference.cache
+C:\repo\WebSites\Pure\Site\Bin\CookielessHostedForm.dll
+C:\repo\WebSites\Pure\Site\Bin\CookielessHostedForm.pdb
