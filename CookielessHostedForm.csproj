@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\..\repo\WebSites\Pure\Site\Bin\</OutputPath>
+    <OutputPath>..\..\Users\evgeny.afanasiev\source\repos\bugfix\WebSites\Pure\Site\Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
@@ -31,9 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\Users\evgeny.afanasiev\source\repos\bugfix\WebSites\Pure\Site\Bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PX.CCProcessing">
       <HintPath>..\..\..\..\Bin\PX.CCProcessing.dll</HintPath>
