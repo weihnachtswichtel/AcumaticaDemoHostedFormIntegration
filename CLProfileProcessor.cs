@@ -79,9 +79,7 @@ namespace CookielessHostedForm
 
         public CustomerData GetCustomerProfile(string customerProfileId)
         {
-            return new CustomerData() {
-                CustomerCD = customerProfileId.Substring(0, customerProfileId.IndexOf("CCPID")),
-            };
+            return ProcessingCenterGateway.GetCustomerProfileById(customerProfileId);
         }
 
         public CreditCardData GetPaymentProfile(string customerProfileId, string paymentProfileId)

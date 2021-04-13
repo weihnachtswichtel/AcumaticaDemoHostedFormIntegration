@@ -73,6 +73,7 @@
     <Compile Include="CLProfileProcessor.cs" />
     <Compile Include="CLTransactionGetter.cs" />
     <Compile Include="CLTransactionProcessor.cs" />
+    <Compile Include="ProcessingCenterGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

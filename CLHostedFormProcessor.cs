@@ -33,7 +33,9 @@ namespace CookielessHostedForm
             Dictionary<string, string> parms = new Dictionary<string, string>()
             {
                 {"Type", "CreateOnly"},
-                {"CPID", customerData.CustomerProfileID}
+                {"CPID", customerData.CustomerProfileID},
+                {"Width", "400" },
+                {"Height", "300"}
             };
 
             return new HostedFormData() {
