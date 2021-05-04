@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Extensions\AccessUsers.cs" />
+    <Compile Remove="Extensions\Account.cs" />
+    <Compile Remove="Extensions\AddPaymentPanelBase.cs" />
+    <Compile Remove="Extensions\Dashboard.cs" />
+    <Compile Remove="Extensions\Dashboards.cs" />
+    <Compile Remove="Extensions\Features.cs" />
+    <Compile Remove="Extensions\ImportScenario.cs" />
+    <Compile Remove="Extensions\ModernAccess.cs" />
+    <Compile Remove="Extensions\OrderType.cs" />
+    <Compile Remove="Extensions\PreferencesSecurityMaint.cs" />
+    <Compile Remove="Extensions\SetupAp.cs" />
+    <Compile Remove="Extensions\SetupGl.cs" />
+    <Compile Remove="Extensions\UserTypes.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Core" Version="21.101.47.48" />
+    <PackageReference Include="Execution" Version="21.101.47.48" />
+    <PackageReference Include="GeneratedWrappers.Acumatica" Version="21.101.42-P104339" />
+  </ItemGroup>
+
+</Project>

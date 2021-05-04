@@ -4,9 +4,14 @@
 <title>CL Payment Communicator</title>
 <script type="text/javascript">
 
-	function getGetParamsAsJSON(){
-		var urlParams = new URLSearchParams(window.location.search);
-		return Object.fromEntries(new URLSearchParams(window.location.search));
+	function resize(){
+		var params = Object.fromEntries(new URLSearchParams(window.location.search));
+		if (!isNaN(params.Width) && parseInt(params.Width)>399 && !isNaN(params.Height) && parseInt(params.Height)>299){
+			parent.document.getElementById('paymentPanel').style.width = params.Width + 'px';
+			parent.document.getElementById('paymentPanel_cont').style.width = params.Width + 'px';
+			parent.document.getElementById('paymentPanel').style.height = params.Height + 'px';
+			parent.document.getElementById('paymentPanel_cont').style.height = params.Height + 'px';
+		}
 	}
 
 	function getDummyProcessingCenterResponse(){
@@ -23,7 +28,7 @@
 		data.Token = token;																			//Add the token to send it back to Acumatica 
 		return JSON.stringify(data);
 	}
-	
+
 	
 	
 </script>
@@ -32,10 +37,11 @@
 <div id="inRequest"></div>
 <div>
  <input type="text" size="40" id="outRequest"> <br>
- <input type="button" value="Send back to Acumatica" onclick="window.parent.px_callback.paymentCallback('action=transactResponse&response=' + getDummyProcessingCenterResponse());">
+ <input type="button" id="sendBack" value="Send back to Acumatica" onclick="window.parent.px_callback.paymentCallback('action=transactResponse&response=' + getDummyProcessingCenterResponse());">
 </div>
 </body>
 <script type="text/javascript">
+	resize();
 	document.getElementById("inRequest").innerHTML = "Parameters received from Acumatica: </br></br>" + " " + window.location.search.substring(1).replaceAll('&','<br>');
 </script>
 </html>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Tests": {
+      "commandName": "Project",
+      "commandLineArgs": "/config \"C:\\github\\TestSDK_21_101_0047_48\\RunnerExample.xml\""
+    }
+  }
+}
