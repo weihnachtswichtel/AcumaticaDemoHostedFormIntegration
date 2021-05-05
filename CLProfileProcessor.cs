@@ -17,7 +17,8 @@ namespace CookielessHostedForm
 
         public string CreateCustomerProfile(CustomerData customerData)
         {
-            return customerData.CustomerCD + "CCPID";                      //use single static one for simplicity
+            //customerData.CustomerCD + "CCPID" use single static one for simplicity
+            return ProcessingCenterGateway.CreateCustomerProfileByCustomerCD(customerData.CustomerCD);
         }
 
         public string CreatePaymentProfile(string customerProfileId, CreditCardData cardData)
@@ -27,30 +28,18 @@ namespace CookielessHostedForm
 
         public void DeleteCustomerProfile(string customerProfileId)
         {
-            throw new System.NotImplementedException();
+            ProcessingCenterGateway.DeleteCustomerProfileById(customerProfileId);
         }
 
         public void DeletePaymentProfile(string customerProfileId, string paymentProfileId)
         {
-            throw new System.NotImplementedException();
+            ProcessingCenterGateway.DeletePaymentProfileById(customerProfileId, paymentProfileId);
         }
 
         public IEnumerable<CustomerData> GetAllCustomerProfiles()
         {
             throw new System.NotImplementedException();
         }
-
-        private Dictionary<string, string> GetSomeCardDetailsByToken(string token){
-            //This should be request to Processing Center to retrive the Card Data by token
-            //since this is not an option for this demo we hide the data in token itself
-            string[] dataFromToken = token.Split('-');
-            return new Dictionary<string, string> {
-                {"Token", token },
-                {"ExpDate", dataFromToken[1].ToString()},                                                   //Here ms from Unix Epoch in UTC
-                {"LastFour",  dataFromToken[2]}
-            };
-        }
-        
 
         public IEnumerable<CreditCardData> GetAllPaymentProfiles(string customerProfileId)
         {
@@ -64,7 +53,7 @@ namespace CookielessHostedForm
             trantype = responseDetails["Type"].ToString();                                                //This parameter passed in HF previously to verify action called (here CreateOnly)
             cpid    = responseDetails["CPID"].ToString();                                                 //This just another peice of data, may be for verification to compare with customerProfileId
 
-            Dictionary<string, string> responseFromProcessingCenter = GetSomeCardDetailsByToken(token);
+            Dictionary<string, string> responseFromProcessingCenter = ProcessingCenterGateway.GetSomeCardDetailsByToken(token);
             if (responseFromProcessingCenter == null) return null;                                          //will throw an exception (no such card found in the Processing Center)
 
             CreditCardData ccd = new CreditCardData()
@@ -84,7 +73,7 @@ namespace CookielessHostedForm
 
         public CreditCardData GetPaymentProfile(string customerProfileId, string paymentProfileId)
         {
-            Dictionary<string, string> responseFromProcessingCenter = GetSomeCardDetailsByToken(paymentProfileId);
+            Dictionary<string, string> responseFromProcessingCenter = ProcessingCenterGateway.GetSomeCardDetailsByToken(paymentProfileId);
 
             return new CreditCardData()
             {
