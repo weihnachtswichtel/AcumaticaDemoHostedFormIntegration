@@ -26,13 +26,13 @@ namespace CookielessHostedForm
                 AuthCode = "AUTH" + transactionInfo[1],
                 CustomerId = transactionInfo[5],
                 CcvVerificationStatus = CcvVerificationStatus.Match,
-                DocNum = transactionInfo[6]+ "-"+ transactionInfo[7],
+                DocNum = transactionInfo[6] + "-" + transactionInfo[7],
                 ExpireAfterDays = 1,
                 PaymentId = string.Format("{0}-{1}-{2}", transactionInfo[0], transactionInfo[1], transactionInfo[2]),
                 SubmitTime = DateTime.UtcNow,
                 TranID = "TRAN" + transactionInfo[1],
                 TranStatus = CCTranStatus.Approved,
-                TranType = transactionInfo[3].Contains("Auth") ? CCTranType.AuthorizeOnly : CCTranType.AuthorizeAndCapture,
+                TranType = (CCTranType)Enum.Parse(typeof(CCTranType), transactionInfo[3]), 
                 ResponseReasonCode = 200,
                 ResponseReasonText = "Success"
             };
