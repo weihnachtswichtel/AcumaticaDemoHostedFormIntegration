@@ -14,19 +14,20 @@ namespace CookielessHostedForm
 
         public ProcessingResult DoTransaction(ProcessingInput inputData)
         {
-            throw new System.NotImplementedException();
-            //ProcessingResult processingResult = new ProcessingResult {
-            //    TransactionNumber = string.Format("{0}-{1}-{2}", inputData.CardData.PaymentProfileID, inputData.TranType, inputData.Amount.ToString()),
-            //    ResponseCode = "200",
-            //    ResponseText = "Success",
-            //    ResponseReasonCode = "200",
-            //    ResponseReasonText = "Success",
-            //    AuthorizationNbr = string.Format("{0}-{1}-{2}", inputData.CardData.PaymentProfileID, inputData.TranType, inputData.Amount.ToString()),
-            //    ExpireAfterDays = 7,
-            //    CcvVerificatonStatus = CcvVerificationStatus.Match,
+            int? expDate = null;
+            if (inputData.TranType == CCTranType.AuthorizeOnly) { expDate = 1;}
 
-            //};
-            //return processingResult;
+            ProcessingResult processingResult = new ProcessingResult {
+                TransactionNumber = "TRAN" + inputData.CardData.PaymentProfileID.Split('-')[1],   //string.Format("{0}-{1}-{2}", inputData.CardData.PaymentProfileID, inputData.TranType, inputData.Amount.ToString()),
+                ResponseCode = "200",
+                ResponseText = "Success",
+                ResponseReasonCode = "200",
+                ResponseReasonText = "Success",
+                AuthorizationNbr = inputData.TranType == CCTranType.AuthorizeOnly ? "AUTH" + inputData.CardData.PaymentProfileID.Split('-')[1] : null,
+                ExpireAfterDays = expDate,
+                CcvVerificatonStatus = CcvVerificationStatus.Match,
+            };
+            return processingResult;
         }
     }
 }
