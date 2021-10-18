@@ -18,7 +18,7 @@ namespace CookielessHostedForm
         }
         public HostedFormResponse Parse(string input)
         {
-            string token, trantype, amount, ccpid, docType, docRefNbr;
+            string token, trantype, amount, ccpid, docType, docRefNbr, tranUID;
             var responseDetails = JObject.Parse(input);
             token = responseDetails["Token"].ToString();
             trantype = responseDetails["Type"].ToString();                                                
@@ -26,9 +26,10 @@ namespace CookielessHostedForm
             ccpid = responseDetails["CPID"].ToString();
             docType = responseDetails["DocType"].ToString();
             docRefNbr = responseDetails["DocRefNbr"].ToString();
+            tranUID = responseDetails["TranUID"].ToString();
             return new HostedFormResponse()
             {
-                TranID = String.Format("{0}-{1}-{2}-{3}-{4}-{5}", token, trantype, amount, ccpid, docType, docRefNbr)
+                TranID = String.Format("{0}-{1}-{2}-{3}-{4}-{5}-{6}", token, trantype, amount, ccpid, docType, docRefNbr, tranUID)   
             };
         }
     }

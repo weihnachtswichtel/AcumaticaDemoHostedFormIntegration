@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Users\evgeny.afanasiev\source\repos\bugfix\WebSites\Pure\Site\Bin\</OutputPath>
+    <OutputPath>Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
@@ -36,24 +36,24 @@
       <HintPath>..\..\Users\evgeny.afanasiev\source\repos\bugfix\WebSites\Pure\Site\Bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PX.CCProcessing">
-      <HintPath>..\..\..\..\Bin\PX.CCProcessing.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Acumatica\21R2\Bin\PX.CCProcessing.dll</HintPath>
     </Reference>
     <Reference Include="PX.CCProcessingBase">
-      <HintPath>..\..\..\..\Bin\PX.CCProcessingBase.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Acumatica\21R2\Bin\PX.CCProcessingBase.dll</HintPath>
     </Reference>
     <Reference Include="PX.Common">
-      <HintPath>..\..\..\..\Bin\PX.Common.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Acumatica\21R2\Bin\PX.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PX.CS.Contracts">
-      <HintPath>..\..\..\..\Bin\PX.CS.Contracts.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Acumatica\21R2\Bin\PX.CS.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="PX.Data">
-      <HintPath>..\..\..\..\Bin\PX.Data.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Acumatica\21R2\Bin\PX.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PX.Objects">
-      <HintPath>..\..\..\..\Bin\PX.Objects.DLL</HintPath>
+      <HintPath>..\..\..\..\..\..\Acumatica\21R2\Bin\PX.Objects.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />

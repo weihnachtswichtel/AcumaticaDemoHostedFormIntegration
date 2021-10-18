@@ -33,10 +33,11 @@ namespace CookielessHostedForm
                 SubmitTime = DateTime.UtcNow,
                 TranID = "TRAN" + transactionInfo[1],
                 TranStatus = CCTranStatus.Approved,
-                TranType = (CCTranType)Enum.Parse(typeof(CCTranType), transactionInfo[3]), 
+                TranType = (CCTranType)Enum.Parse(typeof(CCTranType), transactionInfo[3]),
                 ResponseReasonCode = 200,
-                ResponseReasonText = "Success"
-            };
+                ResponseReasonText = "Success",
+                TranUID = Guid.Parse(string.Format("{0}-{1}-{2}-{3}-{4}", transactionInfo[8], transactionInfo[9], transactionInfo[10], transactionInfo[11], transactionInfo[12])) //Setting TranUid returned from Processing Center
+            };                                                                                                                                                                    //Unlucky initial choice of delimiter for this project - Guid had to be glued together here
 
             return td;
         }

@@ -35,8 +35,10 @@ namespace CookielessHostedForm
                 {"Currency",inputData.CuryID},
                 {"DocType", inputData.DocumentData.DocType},
                 {"DocRefNbr", inputData.DocumentData.DocRefNbr},
-                {"CPID", customerCD+"CCPID"}
+                {"CPID", customerCD+"CCPID"},
+                {"TranUID", inputData.TranUID.ToString()}                                                           //TranUid implementation for 2021 R1
             };
+            
 
             return new HostedFormData()
             {
