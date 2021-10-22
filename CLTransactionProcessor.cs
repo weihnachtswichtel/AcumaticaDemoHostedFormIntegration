@@ -14,6 +14,12 @@ namespace CookielessHostedForm
 
         public ProcessingResult DoTransaction(ProcessingInput inputData)
         {
+
+            //Here can be implemented the API call to the processing center and passing the all data including
+            //inputData.TranUID that should be stored on Processing Center side same way as in scenario with HostedPaymentForm
+            //(Implementation of GetDataForPaymentForm method of ICCHostedPaymentFormProcessor interface)
+
+
             int? expDate = null;
             if (inputData.TranType == CCTranType.AuthorizeOnly) { expDate = 1;}
 
