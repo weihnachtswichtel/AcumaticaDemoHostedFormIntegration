@@ -20,7 +20,13 @@ namespace CookielessHostedForm
         public HostedFormData GetDataForPaymentForm(ProcessingInput inputData)
         {
             string baseUrl, hostedFormURL;
-            baseUrl = PXContext.Session["CCPaymentConnectorUrl"] as string;                                       //Case when Payment Form called from Sales Orders Screen
+            baseUrl = PXContext.Session["CCPaymentConnectorUrl"] as string;                                       //Case when Hosted Payment Form called from Sales Orders Screen
+
+            if (string.IsNullOrEmpty(baseUrl))
+            {
+                baseUrl = PXContext.GetSlot<string>(nameof(Extentions.GetPaymentConnectorUrl));                   //Case when Hosted Payment Form called fom Sales Order Screen for Acumatica ERP version >= 2022 R1
+            }
+
             if (string.IsNullOrEmpty(baseUrl)) { 
                 baseUrl = System.Web.HttpContext.Current.GetPaymentConnectorUrl();                                //Case when Payment Form called from Payments and Applications Screen
             } 
