@@ -32,7 +32,7 @@ namespace CookielessHostedForm
                 PaymentId = string.Format("{0}-{1}-{2}", transactionInfo[0], transactionInfo[1], transactionInfo[2]),
                 SubmitTime = DateTime.UtcNow,
                 TranID = "TRAN" + transactionInfo[1],
-                TranStatus = CCTranStatus.Approved,
+                TranStatus = (CCTranStatus)Int32.Parse(transactionInfo[13]),
                 TranType = (CCTranType)Enum.Parse(typeof(CCTranType), transactionInfo[3]),
                 ResponseReasonCode = 200,
                 ResponseReasonText = "Success",

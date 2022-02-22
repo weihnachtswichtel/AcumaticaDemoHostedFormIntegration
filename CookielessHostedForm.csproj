@@ -35,26 +35,26 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Users\evgeny.afanasiev\source\repos\bugfix\WebSites\Pure\Site\Bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PX.CCProcessing">
-      <HintPath>..\..\..\..\..\..\Acumatica\21R2\Bin\PX.CCProcessing.dll</HintPath>
+    <Reference Include="PX.CCProcessing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Acumatica\22r1\Bin\PX.CCProcessing.dll</HintPath>
     </Reference>
-    <Reference Include="PX.CCProcessingBase">
-      <HintPath>..\..\..\..\..\..\Acumatica\21R2\Bin\PX.CCProcessingBase.dll</HintPath>
+    <Reference Include="PX.CCProcessingBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Acumatica\22r1\Bin\PX.CCProcessingBase.dll</HintPath>
     </Reference>
     <Reference Include="PX.Common">
-      <HintPath>..\..\..\..\..\..\Acumatica\21R2\Bin\PX.Common.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\..\Acumatica\22r1\Bin\PX.Common.dll</HintPath>
     </Reference>
-    <Reference Include="PX.CS.Contracts">
-      <HintPath>..\..\..\..\..\..\Acumatica\21R2\Bin\PX.CS.Contracts.dll</HintPath>
+    <Reference Include="PX.CS.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Acumatica\22r1\Bin\PX.CS.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="PX.Data">
-      <HintPath>..\..\..\..\..\..\Acumatica\21R2\Bin\PX.Data.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\..\Acumatica\22r1\Bin\PX.Data.dll</HintPath>
     </Reference>
     <Reference Include="PX.Objects">
-      <HintPath>..\..\..\..\..\..\Acumatica\21R2\Bin\PX.Objects.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\..\Acumatica\22r1\Bin\PX.Objects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

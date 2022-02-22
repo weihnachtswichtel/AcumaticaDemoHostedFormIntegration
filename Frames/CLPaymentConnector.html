@@ -26,6 +26,7 @@
 
 		var data = Object.fromEntries(new URLSearchParams(window.location.search));					//Convert all the received GET Parameters in the JSON
 		data.Token = token;																			//Add the token to send it back to Acumatica 
+		data.procRes = document.getElementById('procResultSelector').value;
 		return JSON.stringify(data);
 	}
 
@@ -36,12 +37,30 @@
 <body>
 <div id="inRequest"></div>
 <div>
- <input type="text" size="40" id="outRequest"> <br>
- <input type="button" id="sendBack" value="Send back to Acumatica" onclick="window.parent.px_callback.paymentCallback('action=transactResponse&response=' + getDummyProcessingCenterResponse());">
+	<input type="text" size="40" id="outRequest"> <br>
+	<div id="procResult">
+	The transaction should be: 	
+	<select id="procResultSelector">
+		<option selected value="0">Approved</option>
+		<option  value="1">Declined</option>
+		<option value="2">Error</option>
+		<option value="3">HeldForReview</option>
+		<option value="4">Expired</option>
+		<option value="5">Unknown</option>
+		<option value="6">SettledSuccessfully</option>
+		<option value="7">Voided</option>
+		<option value="8">RefundSettledSuccessfully</option>
+		<option value="9">SettlementError</option>
+		<option value="10">GeneralError</option>
+	</select><br></div>
+	<input type="button" id="sendBack" value="Send back to Acumatica" onclick="window.parent.px_callback.paymentCallback('action=transactResponse&response=' + getDummyProcessingCenterResponse());">
 </div>
 </body>
 <script type="text/javascript">
 	resize();
-	document.getElementById("inRequest").innerHTML = "Parameters received from Acumatica: </br></br>" + " " + window.location.search.substring(1).replaceAll('&','<br>');
+	document.getElementById("inRequest").innerHTML = "Parameters received from Acumatica: </br></br>" + " " + window.location.search.substring(1).replaceAll('&', '<br>');
+	//disable the procResult on HostedForm for CustomerPaymentMethod
+    if (!(window.location.search.substring(1).includes("CLTokenHostedPaymentForm"))) { document.getElementById("procResult").style.visibility = 'hidden';}
+
 </script>
 </html>
