@@ -22,6 +22,8 @@
 		if(!token){
 			token="dummyToken";
 		}
+		cardtype = 	document.getElementById('cardTypeSelector').value;								//Get Seected CartType
+		token = cardtype + token;																	//First 3 chars of the token will be CardtType identifier
 		token += "-" + expDate + "-" + lastFour;													//For demo purposes all the CC values presentes in token
 
 		var data = Object.fromEntries(new URLSearchParams(window.location.search));					//Convert all the received GET Parameters in the JSON
@@ -38,6 +40,12 @@
 <div id="inRequest"></div>
 <div>
 	<input type="text" size="40" id="outRequest"> <br>
+	<select id="cardTypeSelector">
+		<option selected value="VIS">Visa</option>
+		<option  value="MSC">MasterCard</option>
+		<option value="AME">American Express</option>
+		<option value="UNI">UnionPay</option>
+	</select><br>
 	<div id="procResult">
 	The transaction should be: 	
 	<select id="procResultSelector">

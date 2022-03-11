@@ -16,12 +16,12 @@ namespace CookielessHostedForm
                 CustomerCD = customerProfileId.Substring(0, customerProfileId.IndexOf("CCPID")),
             };
         }
-        public static void DeleteCustomerProfileById(string customerProfileId){
-        
+        public static void DeleteCustomerProfileById(string customerProfileId) {
+
         }
 
-        public static void DeletePaymentProfileById(string customerProfileId, string paymentProfileId){
-        
+        public static void DeletePaymentProfileById(string customerProfileId, string paymentProfileId) {
+
         }
 
         public static string CreateCustomerProfileByCustomerCD(string customerCD)
@@ -37,8 +37,10 @@ namespace CookielessHostedForm
             return new Dictionary<string, string> {
                 {"Token", token },
                 {"ExpDate", dataFromToken[1].ToString()},                                                   //Here ms from Unix Epoch in UTC
-                {"LastFour",  dataFromToken[2]}
+                {"LastFour",  dataFromToken[2]},
+                {"CardType", dataFromToken[0].Length > 3 ? dataFromToken[0].Substring(0,3) : "OTH" }
             };
         }
+
     }
 }
