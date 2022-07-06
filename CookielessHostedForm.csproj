@@ -37,24 +37,24 @@
     </Reference>
     <Reference Include="PX.CCProcessing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Acumatica\22r1\Bin\PX.CCProcessing.dll</HintPath>
+      <HintPath>..\..\..\..\..\AcumaticaSites\EAMobile21R2\Bin\PX.CCProcessing.dll</HintPath>
     </Reference>
     <Reference Include="PX.CCProcessingBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Acumatica\22r1\Bin\PX.CCProcessingBase.dll</HintPath>
+      <HintPath>..\..\..\..\..\AcumaticaSites\EAMobile21R2\Bin\PX.CCProcessingBase.dll</HintPath>
     </Reference>
     <Reference Include="PX.Common">
-      <HintPath>..\..\..\..\..\..\Acumatica\22r1\Bin\PX.Common.dll</HintPath>
+      <HintPath>..\..\..\..\..\AcumaticaSites\EAMobile21R2\Bin\PX.Common.dll</HintPath>
     </Reference>
     <Reference Include="PX.CS.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Acumatica\22r1\Bin\PX.CS.Contracts.dll</HintPath>
+      <HintPath>..\..\..\..\..\AcumaticaSites\EAMobile21R2\Bin\PX.CS.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="PX.Data">
-      <HintPath>..\..\..\..\..\..\Acumatica\22r1\Bin\PX.Data.dll</HintPath>
+      <HintPath>..\..\..\..\..\AcumaticaSites\EAMobile21R2\Bin\PX.Data.dll</HintPath>
     </Reference>
     <Reference Include="PX.Objects">
-      <HintPath>..\..\..\..\..\..\Acumatica\22r1\Bin\PX.Objects.dll</HintPath>
+      <HintPath>..\..\..\..\..\AcumaticaSites\EAMobile21R2\Bin\PX.Objects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

@@ -61,9 +61,9 @@ namespace CookielessHostedForm
             {
                 PaymentProfileID = responseFromProcessingCenter["Token"],
                 CardExpirationDate = new DateTime(1970, 1, 1).AddMilliseconds(double.Parse(responseFromProcessingCenter["ExpDate"])),
-                CardNumber = responseFromProcessingCenter["LastFour"],
-                CardType = responseFromProcessingCenter["CardType"],                                                        //As Card Type comes from the Processing Center
-                CardTypeCode = CLHelper.MapCardType[responseFromProcessingCenter["CardType"]]                               //As Acumatica Internal enum         
+                CardNumber = responseFromProcessingCenter["LastFour"]
+   //             CardType = responseFromProcessingCenter["CardType"],                                                        //As Card Type comes from the Processing Center
+  //              CardTypeCode = CLHelper.MapCardType[responseFromProcessingCenter["CardType"]]                               //As Acumatica Internal enum         
         };
             ccdList.Add(ccd);
             return ccdList;
@@ -82,9 +82,9 @@ namespace CookielessHostedForm
             {
                 PaymentProfileID = responseFromProcessingCenter["Token"],
                 CardNumber = responseFromProcessingCenter["LastFour"],
-                CardExpirationDate = new DateTime(1970, 1, 1).AddMilliseconds(double.Parse(responseFromProcessingCenter["ExpDate"])),
-                CardType = responseFromProcessingCenter["CardType"],                                                       //As Card Type comes from the Processing Center
-                CardTypeCode = CLHelper.MapCardType[responseFromProcessingCenter["CardType"]]                              //As Acumatica Internal enum   
+                CardExpirationDate = new DateTime(1970, 1, 1).AddMilliseconds(double.Parse(responseFromProcessingCenter["ExpDate"]))
+      //          CardType = responseFromProcessingCenter["CardType"]                                                       //As Card Type comes from the Processing Center
+     //           CardTypeCode = CLHelper.MapCardType[responseFromProcessingCenter["CardType"]]                              //As Acumatica Internal enum   
             };
         }
 

@@ -9,7 +9,7 @@ namespace CookielessHostedForm
 {
     public static class CLHelper
     {
-
+        /*
         public static Dictionary<string, CCCardType> MapCardType = new Dictionary<string, CCCardType>
         {
             {"VIS", CCCardType.Visa},
@@ -17,5 +17,6 @@ namespace CookielessHostedForm
             {"AME", CCCardType.AmericanExpress},
             {"UNI", CCCardType.UnionPay }
         };
+        */
     }
 }
