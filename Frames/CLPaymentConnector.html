@@ -32,7 +32,14 @@
 		return JSON.stringify(data);
 	}
 
-	
+	function setCallbackForMobile() {
+		var params = Object.fromEntries(new URLSearchParams(window.location.search));
+		if (params.CallbackOK) {
+            return decodeURIComponent(params.CallbackOK);
+		} else {
+			return "#";
+		}
+	}
 	
 </script>
 </head>
@@ -42,26 +49,28 @@
 	<input type="text" size="40" id="outRequest"> <br>
 	<select id="cardTypeSelector">
 		<option selected value="VIS">Visa</option>
-		<option  value="MSC">MasterCard</option>
+		<option value="MSC">MasterCard</option>
 		<option value="AME">American Express</option>
 		<option value="UNI">UnionPay</option>
 	</select><br>
 	<div id="procResult">
-	The transaction should be: 	
-	<select id="procResultSelector">
-		<option selected value="0">Approved</option>
-		<option  value="1">Declined</option>
-		<option value="2">Error</option>
-		<option value="3">HeldForReview</option>
-		<option value="4">Expired</option>
-		<option value="5">Unknown</option>
-		<option value="6">SettledSuccessfully</option>
-		<option value="7">Voided</option>
-		<option value="8">RefundSettledSuccessfully</option>
-		<option value="9">SettlementError</option>
-		<option value="10">GeneralError</option>
-	</select><br></div>
+		The transaction should be:
+		<select id="procResultSelector">
+			<option selected value="0">Approved</option>
+			<option value="1">Declined</option>
+			<option value="2">Error</option>
+			<option value="3">HeldForReview</option>
+			<option value="4">Expired</option>
+			<option value="5">Unknown</option>
+			<option value="6">SettledSuccessfully</option>
+			<option value="7">Voided</option>
+			<option value="8">RefundSettledSuccessfully</option>
+			<option value="9">SettlementError</option>
+			<option value="10">GeneralError</option>
+		</select><br>
+	</div>
 	<input type="button" id="sendBack" value="Send back to Acumatica" onclick="window.parent.px_callback.paymentCallback('action=transactResponse&response=' + getDummyProcessingCenterResponse());">
+	<input type="button" id="sendBackMobile" value="Send back to Acumatica Mobile" onclick="location.href = setCallbackForMobile();">
 </div>
 </body>
 <script type="text/javascript">
