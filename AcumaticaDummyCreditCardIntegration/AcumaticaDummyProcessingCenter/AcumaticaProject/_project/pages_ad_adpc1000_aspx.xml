@@ -1,0 +1,6 @@
+﻿<Page path="~/Pages/AD/ADPC1000.aspx" ControlId="14" pageSource="rZPLbtswEEXXCZB/IFhk60faVWAbDSQbMRAHguXa3RVjcWITpUiVjzjuot/eoWTVTtygm2olDcm59x6OBtefWQYbZA+gN4Fehjz5wNkMnEcbFyZSUe1X91hx3Ymx5VLirlPWRc7ugjfjZ9R+JS2Gasi9DcjZEpQU4HGOPwI6P+RPoBzVEyMOfe/SLOn3er0OuOqlUzjOpnqLVno35FHrW7uBs4X08cQX7eOLqF1zdj26uhxQhsbeYl8hW0rrA6gM/PafxuNxakDqt4nRnhKwaTrkBb33o8+6lCko8N4ogTYuVts052weNFCiHO0zNaI2F4Pq5Tb7moKH3ARbYN1JUCTbbHXNVvLn5DpGWdSQVlJEoxTyml9dssMTkzxCGREVoQQvC0hDWe4zawp0TupNQs7QdiKgHH2oZiC1P+mQWVmC3ce40SbtqF1eDBJQag3F98SUJWjhagRU7/5lgapvUkXe3RNeo3fw3byPb/I+vfaC6jZP9HFG7+ikxRsrMyzXaNucr5iyO6XMLk7ovRTYzmCDYoFlpWhA66+DhQfYm+DnQTUXeFron7nJPVg/N7v2Muk3WqNyB/181kCwRuXyJ9aF0YHoseupeI4KC2/sW50mxFhI/0cpmkucP57pf2xYTCQqQWvZNH0MEQsNyzTlrPvfhD69ElpY0G+EBt1XZAeRfiRQ06A5jVe1klqYHWdjDfQ3iFZuJvU9ys2W9G/ib0+92tMn89jOydk0/gY=">
+    <PXSelector DataField="CPIDNumberingID" ParentId="phF_form_CstPXSelector13" TypeFullName="PX.Web.UI.PXSelector">
+        <Prop Key="DisplayMode" Value="Value" />
+        <Prop Key="TextMode" Value="Editable" />
+    </PXSelector>
+</Page>
