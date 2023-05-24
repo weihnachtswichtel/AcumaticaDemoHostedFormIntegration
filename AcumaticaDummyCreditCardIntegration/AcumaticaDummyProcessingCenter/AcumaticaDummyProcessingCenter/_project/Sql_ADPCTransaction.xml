@@ -1,0 +1,36 @@
+﻿<Sql TableName="ADPCTransaction" TableSchemaXml="#CDATA">
+    <CDATA name="TableSchemaXml"><![CDATA[<table name="ADPCTransaction">
+  <col name="CompanyID" type="Int" default="Zero" />
+  <col name="CustomerProfileID" type="NVarChar(10)" />
+  <col name="PaymentProfileID" type="UniqueIdentifier" />
+  <col name="TransactionID" type="NVarChar(15)" />
+  <col name="TransactionDate" type="DateTime" />
+  <col name="TransactionDocument" type="NChar(10)" />
+  <col name="TransactionAmount" type="Decimal(19,4)" />
+  <col name="TransactionExpirationDate" type="DateTime" nullable="true" />
+  <col name="TransactionCurrency" type="NChar(5)" nullable="true" />
+  <col name="TransactionStatus" type="Char(1)" nullable="true" />
+  <col name="AuthorizationNbr" type="NVarChar(20)" nullable="true" />
+  <col name="TransactionDescription" type="NVarChar(255)" nullable="true" />
+  <col name="TranUID" type="UniqueIdentifier" nullable="true" />
+  <col name="CreatedByID" type="UniqueIdentifier" />
+  <col name="CreatedByScreenID" type="Char(8)" />
+  <col name="CreatedDateTime" type="DateTime" />
+  <col name="LastModifiedByID" type="UniqueIdentifier" />
+  <col name="LastModifiedByScreenID" type="Char(8)" />
+  <col name="LastModifiedDateTime" type="DateTime" />
+  <col name="tstamp" type="Timestamp" />
+  <col name="NoteID" type="UniqueIdentifier" nullable="true" />
+  <col name="TransactionType" type="NChar(1)" nullable="true" />
+  <index name="ADPCTransaction_NoteID" unique="true">
+    <col name="NoteID" />
+    <col name="CompanyID" />
+  </index>
+  <index name="PK_ADPCTransaction" clustered="true" primary="true" unique="true">
+    <col name="CompanyID" />
+    <col name="CustomerProfileID" />
+    <col name="PaymentProfileID" />
+    <col name="TransactionID" />
+  </index>
+</table>]]></CDATA>
+</Sql>

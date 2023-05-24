@@ -31,24 +31,27 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PX.CCProcessing">
+      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.CCProcessing.dll</HintPath>
+    </Reference>
     <Reference Include="PX.Common">
-      <HintPath>..\..\..\..\Bin\PX.Common.dll</HintPath>
+      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.Common.dll</HintPath>
     </Reference>
     <Reference Include="PX.Common.Std">
-      <HintPath>..\..\..\..\Bin\PX.Common.Std.dll</HintPath>
+      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.Common.Std.dll</HintPath>
     </Reference>
     <Reference Include="PX.CS.Contracts">
-      <HintPath>..\..\..\..\Bin\PX.CS.Contracts.dll</HintPath>
+      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.CS.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="PX.Data">
-      <HintPath>..\..\..\..\Bin\PX.Data.dll</HintPath>
+      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.Data.dll</HintPath>
     </Reference>
     <Reference Include="PX.Data.BQL.Fluent, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Bin\PX.Data.BQL.Fluent.dll</HintPath>
+      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.Data.BQL.Fluent.dll</HintPath>
     </Reference>
     <Reference Include="PX.Objects">
-      <HintPath>..\..\..\..\Bin\PX.Objects.DLL</HintPath>
+      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.Objects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

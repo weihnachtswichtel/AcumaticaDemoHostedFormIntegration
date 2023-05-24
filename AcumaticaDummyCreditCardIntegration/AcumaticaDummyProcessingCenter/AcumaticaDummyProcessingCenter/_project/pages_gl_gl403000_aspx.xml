@@ -1,0 +1,38 @@
+﻿<Page path="~/pages/gl/gl403000.aspx" pageSource="tVdNU+M4ED1DFf/BpS2uSVhmL1PJ1hKHAFXJkMIZmNuWYjW2FlkKshySPexv325/BCcQk5nMXChHbr/ufq/1JLqnf3kTHoE34jrK8KHH/N+YN+apA0svhlLh2n/t15W0PTQ2GYDjUrWSfJl5F5kzlwvQ7kFayOY95mwG7OT46J4rKbiDO3jOIHU99shVCszzjSixr0afOuedTqfF0/myFabMu9ExWOnSHqN8f1cBBDeVjr75qh09iLx25p3+eXJ8ctzFXooyp6s5ePfSuoyrCXfxHg0QRBcr+Owb7bAP72bQYyE+n1Gt+dJE8RCujRJg6eU8HgTMs5nm2FUAdoEwCHLUnS8/T74NuOOByWwIOZJI16FpEYr1pXJGzUyJKu9BCir0rNM5ZR418IUn+HLyrXU7+wdCl7auRq2LMDSZdtcydcau+qsgm13qZyLmaGJlwu3qXsJLjyGzeVfU7shw0YeYL6SxiGfmmUI9Ar4AgeKgKHnVR12fKzXj4ZNvkoRrkearVTfB1luvrM4CwmbpBPUygnnXUsAUlq5sqr0PxheMP+T7kpNCT6R5AHPQ4lZfWSl6LMK/zCuAuu33euy2twSjSWjXRmHXZPy+ezKGuweDZo9EymEe8cebwdgcBaprDMkM7FpW6sXncyeNpgQKpwMfqfNHnilHRVmjCB/ECEREVZUiTyGZk/x1Ykd8ZTJ3lynYriRw3CKcyhJdjemIz0ClZYXBuKAAswXyX9RiXFFdQvct12FclGisR7RL58foNZBWiFTnZtzZG0qIhKEEhYLe2qhfSo5dbWT7OE+Nj4YUrzG5r1l4tJDGpad9d8ah1MV4NyfdCHubdpPXXyhZAFGCI412+dTU1asEDT3Vgn4kB7qb34hfBhQqjPFEoe2QQ28l9GMIn/pmuTtbGD8FsXnxM7sqnKQx71bk9+f6mkJxIKEjoVtx25TuneDK0Or7uTSyymD2tbHz3TZ2tdvGyF1ziMJgt4q/BhnF+Pvsj/P5ctvRgpUOJyaVhX9VF4Wao2UJnWTebOWhwLyYITT2C6XMSwDchnHFZr6Eh5zUUbUUPElNdZXn4Y1+zvBKwrw7vH1YGbqc00qOgsURLHCD1DWk7vLVDfvFoxZR0GGL7+jMzDda+Wn94+LF21lt7xUqI92HqM8VuiKWTifihcLFHrsjXtcD1wwzcWIAM+mmxnF1CIpvQRwKQz1danFoT7TrcoPMZwG3Id0Y1uO5fymE00zxIRkI/UP2f0KCD4T5GSQ1a3ZIBqw/4EqYX8TNj2LjJbG+qUtTXRtC6bs1y+jSYU1naW6jXGqyigephXlh3qXmeMcXlTmNpa6s8RP+Q1MkraV4x7P/Bw==">
+    <PXGridLevel DataMember="EnqResult" ParentId="phG_grid_Levels#0" TypeFullName="PX.Web.UI.PXGridLevel">
+        <Children Key="Columns">
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="ConsolAccountCD_GLConsolAccount_description" />
+                    <Prop Key="Width" Value="220" />
+                </PXGridColumn>
+            </AddItem>
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="ConsolAccountCD_description" />
+                    <Prop Key="Width" Value="220" />
+                </PXGridColumn>
+            </AddItem>
+            <PXGridColumn DataField="SubCD" OriginalIndex="0" />
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="Description" />
+                    <Prop Key="Width" Value="220" />
+                </PXGridColumn>
+            </AddItem>
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="AccountID_description" />
+                    <Prop Key="Width" Value="220" />
+                </PXGridColumn>
+            </AddItem>
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="AccountID_Account_description" />
+                    <Prop Key="Width" Value="220" />
+                </PXGridColumn>
+            </AddItem>
+            <PXGridColumn DataField="SignBegBalance" OriginalIndex="1" />
+        </Children>
+    </PXGridLevel>
+</Page>
