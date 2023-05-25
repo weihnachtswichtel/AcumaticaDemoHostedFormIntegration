@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using PX.CCProcessing.V2;
 using PX.CCProcessingBase.Interfaces.V2;
 
 namespace AcumaticaDummyCreditCardPlugin
 {
-    [PX.CCProcessingBase.Attributes.PXDisplayTypeName("Cookieless Processing Plug-in")]
+    [PX.CCProcessingBase.Attributes.PXDisplayTypeName("Acumatica Dummy Credit Card Plug-in")]
     public class ADCPProcessingPlugIn : ICCProcessingPlugin
     {
         public T CreateProcessor<T>(IEnumerable<SettingsValue> settingValues) where T : class
@@ -42,15 +43,34 @@ namespace AcumaticaDummyCreditCardPlugin
 
         public IEnumerable<SettingsDetail> ExportSettings()
         {
-            var settings = new List<SettingsDetail>();
-
-
-            settings.Add( new SettingsDetail
+            var settings = new List<SettingsDetail>
+            {
+                new SettingsDetail
                 {
-                    DetailID = "CLID",
-                    Descr = "CLDescr",
-                    DefaultValue = "CLDefaultValue"
-                });
+                    DetailID     = ADCPConstants.ADPCURL,
+                    Descr        = ADCPMessages.ADPCURLDesc,
+                    DefaultValue = ADCPConstants.DefaultADPCURL
+                },
+                new SettingsDetail
+                {
+                    DetailID     = ADCPConstants.ADPCUserName,
+                    Descr        = ADCPMessages.ADPCUserNameDesc,
+                    DefaultValue = ADCPConstants.DefaultADPCUserName
+                },
+                new SettingsDetail
+                {
+                    DetailID             = ADCPConstants.ADPCPassword,
+                    Descr                = ADCPMessages.ADPCPasswordDesc,
+                    DefaultValue         = ADCPConstants.DefaultADPCPassword,
+                    IsEncryptionRequired = true
+                },
+                new SettingsDetail
+                {
+                    DetailID     = ADCPConstants.ADPCTenant,
+                    Descr        = ADCPMessages.ADPCTenantDesc,
+                    DefaultValue = ADCPConstants.DefaultADPCTenant
+                }
+            };
             return settings;
         }
 
@@ -61,7 +81,24 @@ namespace AcumaticaDummyCreditCardPlugin
 
         public string ValidateSettings(SettingsValue setting)
         {
-            return string.Empty;
+            string result = string.Empty;
+            if (setting == null)
+            {
+                return ADCPMessages.NoSetting;
+            }
+            switch (setting.DetailID)
+            {
+                case ADCPConstants.ADPCURL:
+                    result = string.IsNullOrEmpty(setting.Value) ? string.Format(ADCPMessages.NoValue, setting.DetailID) : string.Empty ;
+                    break;
+                case ADCPConstants.ADPCUserName:
+                    result = string.IsNullOrEmpty(setting.Value) ? string.Format(ADCPMessages.NoValue, setting.DetailID) : string.Empty;
+                    break;
+                case ADCPConstants.ADPCPassword:
+                    result = string.IsNullOrEmpty(setting.Value) ? string.Format(ADCPMessages.NoValue, setting.DetailID) : string.Empty;
+                    break;
+            }
+            return result;
         }
     }
 }

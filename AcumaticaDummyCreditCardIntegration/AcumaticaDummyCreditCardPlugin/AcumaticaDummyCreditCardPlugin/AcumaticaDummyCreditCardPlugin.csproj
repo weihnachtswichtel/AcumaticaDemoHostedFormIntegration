@@ -45,6 +45,10 @@
     <Reference Include="PX.Common">
       <HintPath>..\..\..\..\..\Acumatica\23R1\Bin\PX.Common.dll</HintPath>
     </Reference>
+    <Reference Include="PX.Common.Std, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Acumatica\23R1\Bin\PX.Common.Std.dll</HintPath>
+    </Reference>
     <Reference Include="PX.Data">
       <HintPath>..\..\..\..\..\Acumatica\23R1\Bin\PX.Data.dll</HintPath>
     </Reference>
@@ -65,11 +69,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADCPConstants.cs" />
     <Compile Include="ADCPCustomerPaymentMethodMaintExt.cs" />
     <Compile Include="ADCPHelper.cs" />
     <Compile Include="ADCPHostedFormProcessor.cs" />
     <Compile Include="ADCPHostedPaymentFormProcessor.cs" />
     <Compile Include="ADCPHostedPaymentFormResponseParser.cs" />
+    <Compile Include="ADCPMessages.cs" />
     <Compile Include="ADCPProcessingPlugIn.cs" />
     <Compile Include="ADCPProfileCreator.cs" />
     <Compile Include="ADCPProfileProcessor.cs" />
