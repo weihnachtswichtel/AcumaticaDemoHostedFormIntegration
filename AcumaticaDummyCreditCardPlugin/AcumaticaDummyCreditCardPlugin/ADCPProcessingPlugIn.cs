@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
-using PX.CCProcessing.V2;
 using PX.CCProcessingBase.Interfaces.V2;
+using AcumaticaDummyProcessingCenterGatewayAPI;
+using System.Linq;
 
 namespace AcumaticaDummyCreditCardPlugin
 {
@@ -76,7 +76,12 @@ namespace AcumaticaDummyCreditCardPlugin
 
         public void TestCredentials(IEnumerable<SettingsValue> settingValues)
         {
-            throw new NotImplementedException();
+            string url      = settingValues.First(x => x.DetailID == ADCPConstants.ADPCURL).Value;
+            string username = settingValues.First(x => x.DetailID == ADCPConstants.ADPCUserName).Value;
+            string password = settingValues.First(x => x.DetailID == ADCPConstants.ADPCPassword).Value;
+            string tenant   = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value;
+
+            Requests.TestConnection(url, username, password, tenant);
         }
 
         public string ValidateSettings(SettingsValue setting)

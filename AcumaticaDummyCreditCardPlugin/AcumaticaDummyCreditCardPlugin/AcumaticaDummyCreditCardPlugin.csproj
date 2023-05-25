@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\Acumatica\23R1\Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -83,6 +83,12 @@
     <Compile Include="ADCPTransactionProcessor.cs" />
     <Compile Include="ProcessingCenterGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AcumaticaDummyProcessingCenterGatewayAPI\AcumaticaDummyProcessingCenterGatewayAPI\AcumaticaDummyProcessingCenterGatewayAPI.csproj">
+      <Project>{4fb14c47-933e-4e67-b844-316b8bb06129}</Project>
+      <Name>AcumaticaDummyProcessingCenterGatewayAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

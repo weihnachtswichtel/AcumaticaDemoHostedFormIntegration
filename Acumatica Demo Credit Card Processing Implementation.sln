@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcumaticaDummyProcessingCen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcumaticaDummyCreditCardPlugin", "AcumaticaDummyCreditCardPlugin\AcumaticaDummyCreditCardPlugin\AcumaticaDummyCreditCardPlugin.csproj", "{B10A2700-9CD2-4BE0-83E1-7676BD1BE30B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcumaticaDummyProcessingCenterGatewayAPI", "AcumaticaDummyProcessingCenterGatewayAPI\AcumaticaDummyProcessingCenterGatewayAPI\AcumaticaDummyProcessingCenterGatewayAPI.csproj", "{4BA45A24-21ED-489B-8737-9E39324E46C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcumaticaDummyProcessingCenterGatewayAPI", "AcumaticaDummyProcessingCenterGatewayAPI\AcumaticaDummyProcessingCenterGatewayAPI\AcumaticaDummyProcessingCenterGatewayAPI.csproj", "{4FB14C47-933E-4E67-B844-316B8BB06129}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{B10A2700-9CD2-4BE0-83E1-7676BD1BE30B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B10A2700-9CD2-4BE0-83E1-7676BD1BE30B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B10A2700-9CD2-4BE0-83E1-7676BD1BE30B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4BA45A24-21ED-489B-8737-9E39324E46C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BA45A24-21ED-489B-8737-9E39324E46C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BA45A24-21ED-489B-8737-9E39324E46C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BA45A24-21ED-489B-8737-9E39324E46C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FB14C47-933E-4E67-B844-316B8BB06129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB14C47-933E-4E67-B844-316B8BB06129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FB14C47-933E-4E67-B844-316B8BB06129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB14C47-933E-4E67-B844-316B8BB06129}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
