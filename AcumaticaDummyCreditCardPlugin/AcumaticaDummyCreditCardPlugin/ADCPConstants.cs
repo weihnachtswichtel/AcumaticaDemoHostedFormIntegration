@@ -9,10 +9,11 @@ namespace AcumaticaDummyCreditCardPlugin
     public static class ADCPConstants
     {
         #region Keys for the setting details
-        public const string ADPCURL      = "ADPCURL";
-        public const string ADPCUserName = "ADPCUserName";
-        public const string ADPCPassword = "ADPCPassword";
-        public const string ADPCTenant   = "ADPCTenant";
+        //Not more than 10 characters
+        public const string ADPCURL      = "URL";
+        public const string ADPCUserName = "Username";
+        public const string ADPCPassword = "Password";
+        public const string ADPCTenant   = "Tenant";
         #endregion
 
         #region Default Settings

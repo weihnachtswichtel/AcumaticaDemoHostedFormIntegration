@@ -34,7 +34,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Acumatica\23R1\Bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\Acumatica\23R1\Bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PX.CCProcessing">
       <HintPath>..\..\..\..\..\Acumatica\23R1\Bin\PX.CCProcessing.dll</HintPath>
@@ -59,14 +59,8 @@
       <HintPath>..\..\..\..\..\Acumatica\23R1\Bin\PX.Objects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADCPConstants.cs" />
