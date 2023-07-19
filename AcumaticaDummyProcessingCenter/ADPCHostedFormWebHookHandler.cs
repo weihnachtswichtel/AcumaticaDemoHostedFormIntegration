@@ -11,6 +11,9 @@ using PX.Data;
 using System.Web.Http.Results;
 using Newtonsoft.Json;
 using PX.CCProcessing.authorizeNetApi;
+using System.Web.Http;
+using static PX.Data.BQL.BqlPlaceholder;
+using System.Net;
 
 namespace AcumaticaDummyProcessingCenter
 {
@@ -35,13 +38,36 @@ namespace AcumaticaDummyProcessingCenter
         }
 
 
+        public class TextResult : IHttpActionResult
+        {
+            string _value;
+            HttpRequestMessage _request;
+
+            public TextResult(string value, HttpRequestMessage request)
+            {
+                _value = value;
+                _request = request;
+            }
+            public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
+            {
+                var response = new HttpResponseMessage()
+                {
+                    Content = new StringContent(_value),
+                    RequestMessage = _request
+                };
+                return Task.FromResult(response);
+            }
+        }
+
+
+
         public async Task<System.Web.Http.IHttpActionResult> ProcessRequestAsync(
           HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            using (var scope = GetAdminScope())
+            {
             try
             {
-                using (var scope = GetAdminScope())
-                {
                     string requestBody = await request.Content.ReadAsStringAsync();
                     HFRequest hFRequest = JsonConvert.DeserializeObject<HFRequest>(requestBody);
                     ADPCCustomerProfileEntry aDPCCustomerProfileEntry = PXGraph.CreateInstance<ADPCCustomerProfileEntry>();
@@ -58,17 +84,22 @@ namespace AcumaticaDummyProcessingCenter
                     aDPCCustomerProfileEntry.Save.Press();
 
                     HFResponse hFResponse = new HFResponse();
+
                     hFResponse.CPID = aDPCCustomerProfileEntry.PaymentProfiles.Current.CustomerProfileID;
                     hFResponse.PPID = aDPCCustomerProfileEntry.PaymentProfiles.Current.PaymentProfileID.ToString();
 
-                    request.Content = new StringContent(JsonConvert.SerializeObject(hFResponse));
+
+                   // hFResponse.CPID = "testCPID";
+                    //hFResponse.PPID = "testPPID";
+
+                    string text = JsonConvert.SerializeObject(hFResponse);
+                    return new TextResult(text, request);
+
                 }
-            }
             catch (Exception e) { 
                 return new ExceptionResult(e, false, new DefaultContentNegotiator(), request, new[] { new JsonMediaTypeFormatter() });
             }
-
-           return new OkResult(request);
+            }
         }
 
         private IDisposable GetAdminScope()
