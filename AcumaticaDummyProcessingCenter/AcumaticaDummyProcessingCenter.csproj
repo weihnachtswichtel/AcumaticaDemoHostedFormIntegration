@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Acumatica\23R1\Bin\</OutputPath>
+    <OutputPath>..\..\..\Acumatica\23107\Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
@@ -31,31 +31,46 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AcumaticaDummyProcessingCenterGatewayAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Acumatica\23107\Bin\AcumaticaDummyProcessingCenterGatewayAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Acumatica\23R1\Bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\Acumatica\23107\Bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PX.CCProcessing">
-      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.CCProcessing.dll</HintPath>
+    <Reference Include="PX.CCProcessing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Acumatica\23107\Bin\PX.CCProcessing.dll</HintPath>
     </Reference>
-    <Reference Include="PX.Common">
-      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.Common.dll</HintPath>
+    <Reference Include="PX.CCProcessingBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Acumatica\23107\Bin\PX.CCProcessingBase.dll</HintPath>
     </Reference>
-    <Reference Include="PX.Common.Std">
-      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.Common.Std.dll</HintPath>
+    <Reference Include="PX.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Acumatica\23107\Bin\PX.Common.dll</HintPath>
     </Reference>
-    <Reference Include="PX.CS.Contracts">
-      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.CS.Contracts.dll</HintPath>
+    <Reference Include="PX.Common.Std, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Acumatica\23107\Bin\PX.Common.Std.dll</HintPath>
     </Reference>
-    <Reference Include="PX.Data">
-      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.Data.dll</HintPath>
+    <Reference Include="PX.CS.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Acumatica\23107\Bin\PX.CS.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Acumatica\23107\Bin\PX.Data.dll</HintPath>
     </Reference>
     <Reference Include="PX.Data.BQL.Fluent, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.Data.BQL.Fluent.dll</HintPath>
+      <HintPath>..\..\..\Acumatica\23107\Bin\PX.Data.BQL.Fluent.dll</HintPath>
     </Reference>
-    <Reference Include="PX.Objects">
-      <HintPath>..\..\..\..\Acumatica\23R1\Bin\PX.Objects.dll</HintPath>
+    <Reference Include="PX.Objects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Acumatica\23107\Bin\PX.Objects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -64,11 +79,11 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Acumatica\23R1\Bin\System.Net.Http.Formatting.dll</HintPath>
+      <HintPath>..\..\..\Acumatica\23107\Bin\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Acumatica\23R1\Bin\System.Web.Http.dll</HintPath>
+      <HintPath>..\..\..\Acumatica\23107\Bin\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -83,6 +98,7 @@
     <Compile Include="ADPCTransaction.cs" />
     <Compile Include="ADPCTransactionEntry.cs" />
     <Compile Include="ADPCTransactionHistory.cs" />
+    <Compile Include="CCOverride.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

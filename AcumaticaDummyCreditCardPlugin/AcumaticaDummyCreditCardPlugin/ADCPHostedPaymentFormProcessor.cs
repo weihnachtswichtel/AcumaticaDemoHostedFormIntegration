@@ -37,19 +37,22 @@ namespace AcumaticaDummyCreditCardPlugin
                 baseUrl = CCPaymentProcessingHelper.GetPaymentConnectorUrl(HttpContext.Current);                   //Case for Hosted Payment Form called fom Sales Order Screen for Acumatica ERP version >= 2022 R2
             }
 
-            hostedFormURL = baseUrl.Replace("PaymentConnector.html", "CLPaymentConnector.html");
+            hostedFormURL = baseUrl.Replace("PaymentConnector.html", "ADCPPaymentConnector.html");
 
-            string customerCD = GetCustomerCD(inputData.DocumentData.DocType, inputData.DocumentData.DocRefNbr);    //For Demo only
+            //string customerCD = GetCustomerCD(inputData.DocumentData.DocType, inputData.DocumentData.DocRefNbr);    //For Demo only
 
             Dictionary<string, string> parms = new Dictionary<string, string>()
             {
-                {"Type",    inputData.TranType.ToString()},
-                {"Amount",  inputData.Amount.ToString()},
-                {"Currency",inputData.CuryID},
-                {"DocType", inputData.DocumentData.DocType},
-                {"DocRefNbr", inputData.DocumentData.DocRefNbr},
-                {"CPID", customerCD+"CCPID"},
-                {"TranUID", inputData.TranUID.ToString()}                                                           //TranUid implementation for 2021 R1
+                {"Type",         inputData.TranType.ToString()},
+                {"CPID",         inputData.CustomerData.CustomerProfileID},
+                {"CustomerCD",   inputData.CustomerData.CustomerCD},
+                {"CustomerName", inputData.CustomerData.CustomerName},
+                {"Email",        inputData.CustomerData.Email},
+                {"Amount",       inputData.Amount.ToString()},
+                {"Currency",     inputData.CuryID},
+                {"DocType",      inputData.DocumentData.DocType},
+                {"DocRefNbr",    inputData.DocumentData.DocRefNbr},
+                {"TranUID",      inputData.TranUID.ToString()}                                                           //TranUid implementation for 2021 R1
             };
             
 

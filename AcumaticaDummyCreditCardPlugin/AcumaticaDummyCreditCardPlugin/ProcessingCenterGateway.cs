@@ -9,13 +9,10 @@ namespace AcumaticaDummyCreditCardPlugin
 {
     public static class ProcessingCenterGateway
     {
-        public static CustomerData GetCustomerProfileById(string customerProfileId)
-        {
-            return new CustomerData()
-            {
-                CustomerCD = customerProfileId.Substring(0, customerProfileId.IndexOf("CCPID")),
-            };
-        }
+        //public static CustomerData GetCustomerProfileById(string customerProfileId)
+        //{
+
+        //}
         public static void DeleteCustomerProfileById(string customerProfileId) {
 
         }

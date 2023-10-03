@@ -20,7 +20,7 @@ namespace AcumaticaDummyProcessingCenter
 
         public override void Persist()
         {
-             var latestHistoryRecord = TransactionHistory.SelectSingle();
+            var latestHistoryRecord = TransactionHistory.SelectSingle();
 
 
             if (latestHistoryRecord == null || latestHistoryRecord.TransactionStatus != Transaction.Current.TransactionStatus || latestHistoryRecord.TransactionType != Transaction.Current.TransactionType)
@@ -33,7 +33,7 @@ namespace AcumaticaDummyProcessingCenter
             }
 
             base.Persist();
-           
+
         }
     }
 }

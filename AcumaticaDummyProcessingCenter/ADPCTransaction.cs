@@ -102,24 +102,24 @@ namespace AcumaticaDummyProcessingCenter
     [PXUIField(DisplayName = "Transaction Status", Required=true)]
     public virtual string TransactionStatus { get; set; }
     public abstract class transactionStatus : PX.Data.BQL.BqlString.Field<transactionStatus> { }
-    #endregion
-      
-    #region TransactionType
-    [PXDBString(1, IsFixed = true, InputMask = "")]
-    [PXStringList(
-    new [] {"A", "C", "V", "R", "T"},
-    new [] { ADPCMessages.Authorization ,
+        #endregion
+
+        #region TransactionType
+        [PXDBString(1, IsFixed = true, InputMask = "")]
+        [PXStringList(
+        new[] { "A", "C", "V", "R", "T" },
+        new[] { ADPCMessages.Authorization ,
              ADPCMessages.Capture,
              ADPCMessages.Void,
              ADPCMessages.Refund,
-             ADPCMessages.Credit})]  
-    [PXUIField(DisplayName = "Transaction Type", Required=true)]
-    public virtual string TransactionType{ get; set; }
-    public abstract class transactionType: PX.Data.BQL.BqlString.Field<transactionType> { }
-    #endregion   
-      
-    #region AuthorizationNbr
-    [PXDBString(20, IsUnicode = true, InputMask = "")]
+             ADPCMessages.Credit})]
+        [PXUIField(DisplayName = "Transaction Type", Required = true)]
+        public virtual string TransactionType { get; set; }
+        public abstract class transactionType : PX.Data.BQL.BqlString.Field<transactionType> { }
+        #endregion
+
+        #region AuthorizationNbr
+        [PXDBString(20, IsUnicode = true, InputMask = "")]
     [PXUIField(DisplayName = "Authorization Nbr")]
     public virtual string AuthorizationNbr { get; set; }
     public abstract class authorizationNbr : PX.Data.BQL.BqlString.Field<authorizationNbr> { }

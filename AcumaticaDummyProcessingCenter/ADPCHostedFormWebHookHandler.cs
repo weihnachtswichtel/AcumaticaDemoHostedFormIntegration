@@ -14,6 +14,7 @@ using PX.CCProcessing.authorizeNetApi;
 using System.Web.Http;
 using static PX.Data.BQL.BqlPlaceholder;
 using System.Net;
+using PX.Common;
 
 namespace AcumaticaDummyProcessingCenter
 {
@@ -30,6 +31,12 @@ namespace AcumaticaDummyProcessingCenter
             public string Cardtype { get; set; }
             public string Card { get; set; }
             public string ExpDate { get; set; }
+            public decimal Amount { get; set; }
+            public string Currency { get; set; }
+            public string DocType { get; set; }
+            public string DocRefNbr { get; set; }
+            public Guid TranUID { get; set; }
+            public string TransactionStatus { get; set; }
         }
 
         public class HFResponse {
@@ -72,9 +79,17 @@ namespace AcumaticaDummyProcessingCenter
                     HFRequest hFRequest = JsonConvert.DeserializeObject<HFRequest>(requestBody);
                     ADPCCustomerProfileEntry aDPCCustomerProfileEntry = PXGraph.CreateInstance<ADPCCustomerProfileEntry>();
                     ADPCCustomerProfile cp = new ADPCCustomerProfile();
-                    cp.CustomerName = hFRequest.CustomerCD;
-                    aDPCCustomerProfileEntry.CustomerProfile.Insert(cp);
-                    aDPCCustomerProfileEntry.Save.Press();
+                    if (!string.IsNullOrEmpty(hFRequest.CPID)) {
+                        cp.CustomerProfileID = hFRequest.CPID;
+                        aDPCCustomerProfileEntry.CustomerProfile.Current = cp;
+                    }
+                    else
+                    {
+                        cp.CustomerName = hFRequest.CustomerCD;
+                        aDPCCustomerProfileEntry.CustomerProfile.Insert(cp);
+                        aDPCCustomerProfileEntry.Save.Press();
+                    }
+                       
                     ADPCPaymentProfile pp = aDPCCustomerProfileEntry.PaymentProfiles.Insert();
                     pp.CustomerProfileID = aDPCCustomerProfileEntry.CustomerProfile.Current.CustomerProfileID;
                     pp.CardLastFour = hFRequest.Card.Substring(hFRequest.Card.Length - 4);
@@ -88,9 +103,21 @@ namespace AcumaticaDummyProcessingCenter
                     hFResponse.CPID = aDPCCustomerProfileEntry.PaymentProfiles.Current.CustomerProfileID;
                     hFResponse.PPID = aDPCCustomerProfileEntry.PaymentProfiles.Current.PaymentProfileID.ToString();
 
-
-                   // hFResponse.CPID = "testCPID";
-                    //hFResponse.PPID = "testPPID";
+                    if (!string.IsNullOrEmpty(hFRequest.Type)){
+                        var transactionMaint = PXGraph.CreateInstance<ADPCTransactionEntry>();
+                        var transaction = transactionMaint.Transaction.Insert();
+                        transaction.TransactionType = "A";
+                        transaction.CustomerProfileID = aDPCCustomerProfileEntry.PaymentProfiles.Current.CustomerProfileID;
+                        transaction.PaymentProfileID = aDPCCustomerProfileEntry.PaymentProfiles.Current.PaymentProfileID;
+                        transaction.TransactionDocument = hFRequest.DocType + hFRequest.DocRefNbr;
+                        transaction.TransactionAmount = hFRequest.Amount;
+                        transaction.TransactionCurrency = hFRequest.Currency;
+                        transaction.TransactionDate = DateTime.UtcNow;
+                        transaction.Tranuid = hFRequest.TranUID;
+                        transaction.TransactionStatus = string.IsNullOrEmpty(hFRequest.TransactionStatus) ? "A" : hFRequest.TransactionStatus;
+                        transactionMaint.Save.Press();
+                        return new TextResult(transactionMaint.Transaction.Current.TransactionID, request);
+                    }
 
                     string text = JsonConvert.SerializeObject(hFResponse);
                     return new TextResult(text, request);
