@@ -15,7 +15,7 @@ namespace AcumaticaDummyCreditCardPlugin
             this.settingValues = settingValues;
         }
         
-        //Creates the profile from the transaction. Triggered in the Hosted Payment Horm flow.
+        //Creates the profile from the transaction. Triggered in the Hosted Payment Form flow.
         public TranProfile GetOrCreatePaymentProfileFromTransaction(string transactionId, CreateTranPaymentProfileParams cParams)
         {
             string url = settingValues.First(x => x.DetailID == ADCPConstants.ADPCURL).Value;
@@ -28,8 +28,7 @@ namespace AcumaticaDummyCreditCardPlugin
 
             return new TranProfile
             {
-                //ToDo implement CCPID properly
-                CustomerProfileId = cParams.PCCustomerId,
+                CustomerProfileId = tran.CustomerProfileID.ToString(),
                 PaymentProfileId  = tran.PaymentProfileID.ToString()                  
             };
         }

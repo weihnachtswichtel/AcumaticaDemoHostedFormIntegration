@@ -25,18 +25,16 @@ namespace AcumaticaDummyProcessingCenter
     public SelectFrom<ADPCSetup>.View Setup;
 
     public SelectFrom<Customer>.View customer;
-    public PXAction<ADPCSetup> ImportCardPayments;
+    //public PXAction<ADPCSetup> ImportCardPayments;
 
-    //[PXButton, PXUIField(DisplayName = "Import Cards")]
-    //public virtual IEnumerable importCardPayments(PXAdapter adapter) {
-    //        //     PXLongOperation.StartOperation(this, () =>
-    //        //     {
-
+    //    [PXButton, PXUIField(DisplayName = "Import Card Payments")]
+    //    public virtual IEnumerable importCardPayments(PXAdapter adapter)
+    //    {
     //        //input paramaters
     //        string CustomerCD = "AACUSTOMER";
     //        string ProcessingCenterID = "ADCP";
     //        string PaymentMethodID = "ADCP";
-    //        string TransactionID = "1232123123";
+    //        string TransactionID = "TRAN00000000024";
     //        decimal? Amount = 10;
 
     //        //Implementation
@@ -55,19 +53,17 @@ namespace AcumaticaDummyProcessingCenter
     //        pe.Document.Insert(pe.Document.Current);
     //        pe.Save.Press();
 
-    //        //Recording transaction
-    //        //var ext = pe.GetExtension<ARPaymentEntryPaymentTransaction>();
-    //        var ext = pe.GetExtension<MyARPaymentEntryPaymentTransaction>();
-
-
-    //        ext.InputPmtInfo.Current.PCTranNumber = TransactionID;
-    //        ext.RecordCCPayment(ARPaymentEntry.CreateAdapterWithDummyView(pe, pe.Document.Current));
-
+    //        //Recording th
+    //        var ARPmtExt = pe.GetExtension<ARPaymentEntryPaymentTransaction>();
+    //        InputPaymentInfo info = ARPmtExt.ccPaymentInfo.Current;
+    //        info.PCTranNumber = TransactionID;
+    //        ARPmtExt.ccPaymentInfo.Cache.Insert(info);
+    //        pe.Document.View.Answer = WebDialogResult.OK;
+    //        ARPmtExt.recordCCPayment.Press();
 
     //        return adapter.Get();
+    //    }
     //}
-
-    }
 
     //public class MyARPaymentEntryPaymentTransaction : PaymentTransactionAcceptFormGraph<ARPaymentEntry, ARPayment>{
     //    public static bool IsActive() => PXAccess.FeatureInstalled<PX.Objects.CS.FeaturesSet.integratedCardProcessing>();
@@ -118,6 +114,6 @@ namespace AcumaticaDummyProcessingCenter
     //        return graph.GetExtension<ARPaymentEntryPaymentTransaction>();
     //    }
 
-   // }
+    }
 
 }

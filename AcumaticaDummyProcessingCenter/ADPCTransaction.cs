@@ -1,6 +1,7 @@
 using System;
 using PX.Data;
 using PX.Data.BQL.Fluent;
+using PX.Objects.CR;
 using PX.Objects.CS;
 
 namespace AcumaticaDummyProcessingCenter
@@ -14,7 +15,12 @@ namespace AcumaticaDummyProcessingCenter
     #region PaymentProfileID
     [PXDBGuid(IsKey = true)]
     [PXUIField(DisplayName = "Payment Profile ID")]
-    [PXSelector(typeof(Search<ADPCPaymentProfile.paymentProfileID>))]
+    [PXSelector(typeof(Search<ADPCPaymentProfile.paymentProfileID>), new Type[]
+    {
+        typeof(ADPCPaymentProfile.cardType),
+        typeof(ADPCPaymentProfile.cardbin),
+        typeof(ADPCPaymentProfile.name),
+    })]
     [PXDBDefault(typeof(ADPCPaymentProfile.paymentProfileID))]
     [PXParent(typeof(SelectFrom<ADPCPaymentProfile>.
        Where<ADPCPaymentProfile.paymentProfileID.
@@ -38,10 +44,10 @@ namespace AcumaticaDummyProcessingCenter
       
     #region TransactionID
     [PXDBString(15, IsKey = true, IsUnicode = true, InputMask = ">CCCCCCCCCCCCCCC")]
-    [PXDefault(typeof(Search<ADPCTransaction.transactionID, Where<ADPCTransaction.paymentProfileID.IsEqual<ADPCPaymentProfile.paymentProfileID.FromCurrent>>>), PersistingCheck = PXPersistingCheck.NullOrBlank)]
+    [PXDefault()]
     [PXUIField(DisplayName = "Transaction ID", Visibility = PXUIVisibility.SelectorVisible)]
     [AutoNumber(typeof(ADPCSetup.tranNumberingID),typeof(AccessInfo.businessDate))]
-    [PXSelector(typeof(Search<ADPCTransaction.transactionID, Where<ADPCTransaction.paymentProfileID.IsEqual<ADPCPaymentProfile.paymentProfileID.FromCurrent>>>))]
+    [PXSelector(typeof(Search<ADPCTransaction.transactionID>))]
     public virtual string TransactionID { get; set; }
     public abstract class transactionID : PX.Data.BQL.BqlString.Field<transactionID> { }
     #endregion

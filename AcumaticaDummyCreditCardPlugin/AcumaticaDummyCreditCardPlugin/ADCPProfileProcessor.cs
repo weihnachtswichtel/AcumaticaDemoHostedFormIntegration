@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CSharp;
+using Acumatica.ADPCGateway.Model;
 
 namespace AcumaticaDummyCreditCardPlugin
 {
@@ -91,21 +92,17 @@ namespace AcumaticaDummyCreditCardPlugin
             string tenant = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value;
 
             Requests req = new Requests();
-            dynamic result = req.GetCustomerProfileByCPID(url, username, password, tenant, customerProfileId);
+            CustomerProfile cp = req.GetCustomerProfileByCPID(url, username, password, tenant, customerProfileId);
 
-            //new {CCPID = cp.CustomerProfileID, CustomerName = cp.CustomerDescription, CustomerCD = cp.CustomerName, Email = cp.Email };
             CustomerData cd = new CustomerData();
-            cd.CustomerName = result.CustomerName;
-            cd.CustomerCD = result.CustomerCD;
-            cd.CustomerProfileID = result.CCPID;
-            cd.Email = result.Email;
+            cd.CustomerName = cp.CustomerDescription;
+            cd.CustomerCD = cp.CustomerName;
+            cd.CustomerProfileID = cp.CustomerProfileID;
+            cd.Email = cp.Email;
             
 
-            return new CustomerData{
-            };
+            return cd;
 
-            //return ProcessingCenterGateway.GetCustomerProfileById(customerProfileId);
-                   
         }
 
         public CreditCardData GetPaymentProfile(string customerProfileId, string paymentProfileId)

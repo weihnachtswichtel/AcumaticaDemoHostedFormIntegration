@@ -125,7 +125,7 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
          //   return result;
         }
 
-        public object GetCustomerProfileByCPID(string url, string username, string password, string tenant, string customerProfileId)
+        public CustomerProfile GetCustomerProfileByCPID(string url, string username, string password, string tenant, string customerProfileId)
         {
             string result = string.Empty;
             int timeout = 100000;
@@ -151,7 +151,7 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
             CustomerProfile cp = ((CustomerProfile)ApiClientHelpers.Deserialize<CustomerProfile>(response));
             response = Client.PostAsync(url + "/entity/auth/logout", new StringContent(string.Empty, Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
 
-            return new {CCPID = cp.CustomerProfileID, CustomerName = cp.CustomerDescription, CustomerCD = cp.CustomerName, Email = cp.Email };
+            return cp;// new {CCPID = cp.CustomerProfileID, CustomerName = cp.CustomerDescription, CustomerCD = cp.CustomerName, Email = cp.Email };
         }
 
         public Transaction GetTransactionByID(string url, string username, string password, string tenant, string transactionID){
@@ -198,6 +198,35 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
             //    //CardTypeCode = CCCardType.Visa,
             //    TranUID = tran.Tranuid
             //};
+        }
+
+        public List<Transaction> GetUnsettledTransactions(string url, string username, string password, string tenant)
+        {
+            string result = string.Empty;
+            int timeout = 100000;
+            var Cookies = new CookieContainer();
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.CookieContainer = Cookies;
+
+            var Client = new HttpClient(handler);
+            Client.Timeout = new TimeSpan(0, 0, 0, 0, timeout);
+            result = string.Empty;
+            string postBody = $"{{\"name\":\"{username}\", \"password\":\"{password}\", \"tenant\": \"{tenant}\"}}";
+
+            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var response = Client.PostAsync(url + "/entity/auth/login", new StringContent(postBody, Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
+
+            //if (response?.IsSuccessStatusCode == true)
+            //{
+            //    result = "Credentials correct. ";
+            //}
+
+            response = Client.GetAsync(url + $"/entity/ADPCGateway/1/Transaction?$filter=TransactionStatus ne 'Settled Successfully'").GetAwaiter().GetResult();
+            var p = response.EnsureSuccessStatusCode();
+            List<Transaction> trs = (List<Transaction>)ApiClientHelpers.Deserialize<List<Transaction>>(response);
+            response = Client.PostAsync(url + "/entity/auth/logout", new StringContent(string.Empty, Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
+
+            return trs;
         }
 
         public string TestConnection(string SiteURL, string Username, string Password, string Tenant = null)
