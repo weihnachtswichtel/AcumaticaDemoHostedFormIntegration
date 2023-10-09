@@ -103,7 +103,8 @@ namespace AcumaticaDummyProcessingCenter
                     hFResponse.CPID = aDPCCustomerProfileEntry.PaymentProfiles.Current.CustomerProfileID;
                     hFResponse.PPID = aDPCCustomerProfileEntry.PaymentProfiles.Current.PaymentProfileID.ToString();
 
-                    if (!string.IsNullOrEmpty(hFRequest.Type)){
+                    if (!string.IsNullOrEmpty(hFRequest.Type) && hFRequest.Type !="CreateOnly")
+                    {
                         var transactionMaint = PXGraph.CreateInstance<ADPCTransactionEntry>();
                         var transaction = transactionMaint.Transaction.Insert();
                         transaction.TransactionType = "A";

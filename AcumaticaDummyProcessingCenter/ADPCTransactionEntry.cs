@@ -22,7 +22,6 @@ namespace AcumaticaDummyProcessingCenter
         {
             var latestHistoryRecord = TransactionHistory.SelectSingle();
 
-
             if (latestHistoryRecord == null || latestHistoryRecord.TransactionStatus != Transaction.Current.TransactionStatus || latestHistoryRecord.TransactionType != Transaction.Current.TransactionType)
             {
                 ADPCTransactionHistory hist = TransactionHistory.Insert();

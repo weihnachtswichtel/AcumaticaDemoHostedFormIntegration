@@ -57,7 +57,9 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
                     Email = customerEmail
                 };
 
-                response = Client.PutAsync(url + $"/entity/ADPCGateway/1/CustomerProfile", new StringContent(ApiClientHelpers.Serialize(cp), Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
+                string content = ApiClientHelpers.Serialize(cp);
+
+                response = Client.PutAsync(url + $"/entity/ADPCGateway/1/CustomerProfile", new StringContent(content, Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
                 cp = (CustomerProfile)ApiClientHelpers.Deserialize<CustomerProfile>(response);
             }
 
@@ -125,7 +127,7 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
          //   return result;
         }
 
-        public CustomerProfile GetCustomerProfileByCPID(string url, string username, string password, string tenant, string customerProfileId)
+        public CustomerProfile GetCustomerProfileByCPID(string url, string username, string password, string tenant, string customerProfileId, bool withPaymentProfiles = false)
         {
             string result = string.Empty;
             int timeout = 100000;
@@ -146,7 +148,7 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
             //    result = "Credentials correct. ";
             //}
 
-            response = Client.GetAsync(url + $"/entity/ADPCGateway/1/CustomerProfile/{customerProfileId}").GetAwaiter().GetResult();
+            response = Client.GetAsync(url + $"/entity/ADPCGateway/1/CustomerProfile/{customerProfileId}" + (withPaymentProfiles ? "?$expand=PaymentProfiles" : "")).GetAwaiter().GetResult();
             var p = response.EnsureSuccessStatusCode();
             CustomerProfile cp = ((CustomerProfile)ApiClientHelpers.Deserialize<CustomerProfile>(response));
             response = Client.PostAsync(url + "/entity/auth/logout", new StringContent(string.Empty, Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
