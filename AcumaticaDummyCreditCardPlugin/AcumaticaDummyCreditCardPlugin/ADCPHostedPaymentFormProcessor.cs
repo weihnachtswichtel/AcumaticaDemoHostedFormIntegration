@@ -1,3 +1,4 @@
+using AcumaticaDummyProcessingCenterGatewayAPI;
 using PX.CCProcessingBase;
 using PX.CCProcessingBase.Interfaces.V2;
 using PX.Common;
@@ -5,6 +6,7 @@ using PX.Data;
 using PX.Objects.AR;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using ProcessingInput = PX.CCProcessingBase.Interfaces.V2.ProcessingInput;
 
@@ -39,11 +41,21 @@ namespace AcumaticaDummyCreditCardPlugin
 
             hostedFormURL = baseUrl.Replace("PaymentConnector.html", "ADCPPaymentConnector.html");
 
+            string url = settingValues.First(x => x.DetailID == ADCPConstants.ADPCURL).Value;
+            string username = settingValues.First(x => x.DetailID == ADCPConstants.ADPCUserName).Value;
+            string password = settingValues.First(x => x.DetailID == ADCPConstants.ADPCPassword).Value;
+            string tenant = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value;
+
+            Requests req = new Requests();
+            string hfkey = req.GetHostedFormUrlKey(url, username, password, tenant);
+            string HFSUrl = ComposeHFSUrl(settingValues, hfkey);
+
             //string customerCD = GetCustomerCD(inputData.DocumentData.DocType, inputData.DocumentData.DocRefNbr);    //For Demo only
 
             Dictionary<string, string> parms = new Dictionary<string, string>()
             {
                 {"Type",         inputData.TranType.ToString()},
+                {"HFSKey",       HFSUrl},
                 {"CPID",         inputData.CustomerData.CustomerProfileID},
                 {"CustomerCD",   inputData.CustomerData.CustomerCD},
                 {"CustomerName", inputData.CustomerData.CustomerName},
@@ -61,10 +73,20 @@ namespace AcumaticaDummyCreditCardPlugin
                 Caption = "CLCharge",
                 Url     = hostedFormURL,
                 UseGetMethod = true,
-                Token   = "CLTokenHostedPaymentForm",
+               // Token   = "CLTokenHostedPaymentForm",
                 Parameters = parms
             };
         }
+
+        private string ComposeHFSUrl(IEnumerable<SettingsValue> settingValues, string hfkey)
+        {
+            string url = settingValues.First(x => x.DetailID == ADCPConstants.ADPCURL).Value;
+            string tenant = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value;
+
+            string hFSUrl = string.Format("{0}/Webhooks/{1}/{2}", url, tenant, hfkey);
+            return hFSUrl;
+        }
+
 
         private static string GetCustomerCD(string DocType, string DocRefNbr)
         {

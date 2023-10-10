@@ -14,6 +14,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;
+using System.Net.Security;
 using System.Runtime.Serialization;
 using System.Security.Policy;
 using System.Text;
@@ -31,7 +32,7 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
             var Cookies = new CookieContainer();
             HttpClientHandler handler = new HttpClientHandler();
             handler.CookieContainer = Cookies;
-
+            ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate { return true; });
             var Client = new HttpClient(handler);
             Client.Timeout = new TimeSpan(0, 0, 0, 0, timeout);
             result = string.Empty;
@@ -134,7 +135,7 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
             var Cookies = new CookieContainer();
             HttpClientHandler handler = new HttpClientHandler();
             handler.CookieContainer = Cookies;
-
+            ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate { return true; });
             var Client = new HttpClient(handler);
             Client.Timeout = new TimeSpan(0, 0, 0, 0, timeout);
             result = string.Empty;
@@ -156,13 +157,35 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
             return cp;// new {CCPID = cp.CustomerProfileID, CustomerName = cp.CustomerDescription, CustomerCD = cp.CustomerName, Email = cp.Email };
         }
 
+        public string GetHostedFormUrlKey(string url, string username, string password, string tenant) {
+            string result = string.Empty;
+            int timeout = 100000;
+            var Cookies = new CookieContainer();
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.CookieContainer = Cookies;
+            ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate { return true; });
+            var Client = new HttpClient(handler);
+            Client.Timeout = new TimeSpan(0, 0, 0, 0, timeout);
+            result = string.Empty;
+            string postBody = $"{{\"name\":\"{username}\", \"password\":\"{password}\", \"tenant\": \"{tenant}\"}}";
+
+            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var response = Client.PostAsync(url + "/entity/auth/login", new StringContent(postBody, Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
+
+            response = Client.GetAsync(url + "/entity/ADPCGateway/1/HostedFormService?$filter=Active eq true and ImplementationClass eq 'AcumaticaDummyProcessingCenter.ADPCHostedFormWebHookHandler'").GetAwaiter().GetResult();
+            var p = response.EnsureSuccessStatusCode();
+            HostedFormService hfs = ((List<HostedFormService>)ApiClientHelpers.Deserialize<List<HostedFormService>>(response)).FirstOrDefault();
+            response = Client.PostAsync(url + "/entity/auth/logout", new StringContent(string.Empty, Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
+            return hfs.webHookID.ToString();
+        }
+
         public Transaction GetTransactionByID(string url, string username, string password, string tenant, string transactionID){
             string result = string.Empty;
             int timeout = 100000;
             var Cookies = new CookieContainer();
             HttpClientHandler handler = new HttpClientHandler();
             handler.CookieContainer = Cookies;
-
+            ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate { return true; });
             var Client = new HttpClient(handler);
             Client.Timeout = new TimeSpan(0, 0, 0, 0, timeout);
             result = string.Empty;
@@ -209,7 +232,7 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
             var Cookies = new CookieContainer();
             HttpClientHandler handler = new HttpClientHandler();
             handler.CookieContainer = Cookies;
-
+            ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate { return true; });
             var Client = new HttpClient(handler);
             Client.Timeout = new TimeSpan(0, 0, 0, 0, timeout);
             result = string.Empty;
@@ -237,7 +260,7 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
             var Cookies = new CookieContainer();
             HttpClientHandler handler = new HttpClientHandler();
             handler.CookieContainer = Cookies;
-
+            ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate { return true; });
             var Client = new HttpClient(handler);
             Client.Timeout = new TimeSpan(0, 0, 0, 0, timeout);
             string result = string.Empty;

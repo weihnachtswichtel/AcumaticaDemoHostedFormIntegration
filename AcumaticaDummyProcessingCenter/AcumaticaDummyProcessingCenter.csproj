@@ -98,7 +98,6 @@
     <Compile Include="ADPCTransaction.cs" />
     <Compile Include="ADPCTransactionEntry.cs" />
     <Compile Include="ADPCTransactionHistory.cs" />
-    <Compile Include="CCOverride.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

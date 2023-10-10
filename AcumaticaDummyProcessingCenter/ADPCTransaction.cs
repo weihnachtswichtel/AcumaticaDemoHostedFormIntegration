@@ -13,12 +13,13 @@ namespace AcumaticaDummyProcessingCenter
     
     
     #region PaymentProfileID
-    [PXDBGuid(IsKey = true)]
+    [PXDBGuid()]
     [PXUIField(DisplayName = "Payment Profile ID")]
     [PXSelector(typeof(Search<ADPCPaymentProfile.paymentProfileID>), new Type[]
     {
         typeof(ADPCPaymentProfile.cardType),
         typeof(ADPCPaymentProfile.cardbin),
+        typeof(ADPCPaymentProfile.cardLastFour),
         typeof(ADPCPaymentProfile.name),
     })]
     [PXDBDefault()]
