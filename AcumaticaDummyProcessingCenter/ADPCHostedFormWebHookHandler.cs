@@ -15,6 +15,9 @@ using System.Web.Http;
 using static PX.Data.BQL.BqlPlaceholder;
 using System.Net;
 using PX.Common;
+using PX.Objects.CR;
+using static PX.SM.StandartDateTimeFormat;
+using System.Globalization;
 
 namespace AcumaticaDummyProcessingCenter
 {
@@ -95,6 +98,10 @@ namespace AcumaticaDummyProcessingCenter
                     pp.CardLastFour = hFRequest.Card.Substring(hFRequest.Card.Length - 4);
                     pp.Cardbin = hFRequest.Card.Substring(0, 6);
                     pp.CardType = hFRequest.Cardtype[0].ToString();
+
+                    DateTime parsedExpDate;
+                    pp.CardExpirationDate = DateTime.TryParseExact(hFRequest.ExpDate, "mm/yy", null, DateTimeStyles.None, out parsedExpDate) ? parsedExpDate : DateTime.Now.AddMonths(20);
+
                     aDPCCustomerProfileEntry.PaymentProfiles.Current = pp;
                     aDPCCustomerProfileEntry.Save.Press();
 
