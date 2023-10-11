@@ -18,12 +18,6 @@ namespace AcumaticaDummyCreditCardPlugin
         }
         public HostedFormResponse Parse(string input)
         {
-            //bool ivAVSDeclined = true;
-
-            //if (ivAVSDeclined) {
-            //    throw new CCProcessingException("AVS declined", CCProcessingException.ExceptionReason.TranDeclined);
-            //}
-
             return new HostedFormResponse()
             {
                 TranID = input

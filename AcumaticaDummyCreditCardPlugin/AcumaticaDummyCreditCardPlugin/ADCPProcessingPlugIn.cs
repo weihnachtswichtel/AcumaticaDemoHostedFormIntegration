@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System;
 using PX.CCProcessingBase.Interfaces.V2;
-using AcumaticaDummyProcessingCenterGatewayAPI;
 using System.Linq;
+using Acumatica.ADPCGateway;
 
 namespace AcumaticaDummyCreditCardPlugin
 {
@@ -82,8 +82,7 @@ namespace AcumaticaDummyCreditCardPlugin
             string password = settingValues.First(x => x.DetailID == ADCPConstants.ADPCPassword).Value;
             string tenant   = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value;
 
-            Requests req = new Requests();
-            string result = req.TestConnection(url, username, password, tenant);
+            string result = Requests.TestConnection(ADCPHelper.GetPCGredentials(settingValues));
 
             throw new Exception(result);
         }

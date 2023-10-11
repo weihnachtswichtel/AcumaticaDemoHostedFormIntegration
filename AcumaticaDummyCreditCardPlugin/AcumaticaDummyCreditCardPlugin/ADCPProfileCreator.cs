@@ -1,5 +1,5 @@
-﻿using Acumatica.ADPCGateway.Model;
-using AcumaticaDummyProcessingCenterGatewayAPI;
+﻿using Acumatica.ADPCGateway;
+using Acumatica.ADPCGateway.Model;
 using PX.CCProcessingBase.Interfaces.V2;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +18,7 @@ namespace AcumaticaDummyCreditCardPlugin
         //Creates the profile from the transaction. Triggered in the Hosted Payment Form flow.
         public TranProfile GetOrCreatePaymentProfileFromTransaction(string transactionId, CreateTranPaymentProfileParams cParams)
         {
-            string url = settingValues.First(x => x.DetailID == ADCPConstants.ADPCURL).Value;
-            string username = settingValues.First(x => x.DetailID == ADCPConstants.ADPCUserName).Value;
-            string password = settingValues.First(x => x.DetailID == ADCPConstants.ADPCPassword).Value;
-            string tenant = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value;
-
-            Requests req = new Requests();
-            Transaction tran = req.GetTransactionByID(url, username, password, tenant, transactionId);
+            Transaction tran = Requests.GetTransactionByID(ADCPHelper.GetPCGredentials(settingValues), transactionId);
 
             return new TranProfile
             {

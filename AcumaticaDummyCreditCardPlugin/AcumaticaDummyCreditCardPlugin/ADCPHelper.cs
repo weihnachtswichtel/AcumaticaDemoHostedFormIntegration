@@ -1,4 +1,5 @@
 ﻿using PX.CCProcessingBase.Interfaces.V2;
+using PX.Data.Update;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,5 +44,15 @@ namespace AcumaticaDummyCreditCardPlugin
             {"Unknown", CCTranStatus.Unknown},
             {"Voided", CCTranStatus.Voided},
         };
+
+        public static Acumatica.ADPCGateway.PCCredentials GetPCGredentials(IEnumerable<SettingsValue> settingValues)
+        {
+            return new Acumatica.ADPCGateway.PCCredentials {
+                Url = settingValues.First(x => x.DetailID == ADCPConstants.ADPCURL).Value,
+                UserName = settingValues.First(x => x.DetailID == ADCPConstants.ADPCUserName).Value,
+                Password = settingValues.First(x => x.DetailID == ADCPConstants.ADPCPassword).Value,
+                Tenant = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value,
+            };
+        }
     }
 }

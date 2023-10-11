@@ -1,5 +1,5 @@
+using Acumatica.ADPCGateway;
 using Acumatica.ADPCGateway.Model;
-using AcumaticaDummyProcessingCenterGatewayAPI;
 using PX.CCProcessingBase.Interfaces.V2;
 using PX.Common;
 using PX.Data.Update.ExchangeService;
@@ -36,16 +36,8 @@ namespace AcumaticaDummyCreditCardPlugin
                 }
             }
 
-            string url = settingValues.First(x => x.DetailID == ADCPConstants.ADPCURL).Value;
-            string username = settingValues.First(x => x.DetailID == ADCPConstants.ADPCUserName).Value;
-            string password = settingValues.First(x => x.DetailID == ADCPConstants.ADPCPassword).Value;
-            string tenant = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value;
-
-            Requests req = new Requests();
-            string hfkey = req.GetHostedFormUrlKey(url, username, password, tenant);
+            string hfkey = Requests.GetHostedFormUrlKey(ADCPHelper.GetPCGredentials(settingValues));
             string HFSUrl = ComposeHFSUrl(settingValues, hfkey);
-
-         
 
             Dictionary<string, string> parms = new Dictionary<string, string>()
             {

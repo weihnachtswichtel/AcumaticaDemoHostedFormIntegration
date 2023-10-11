@@ -1,4 +1,4 @@
-using AcumaticaDummyProcessingCenterGatewayAPI;
+using Acumatica.ADPCGateway;
 using PX.CCProcessingBase;
 using PX.CCProcessingBase.Interfaces.V2;
 using PX.Common;
@@ -41,16 +41,8 @@ namespace AcumaticaDummyCreditCardPlugin
 
             hostedFormURL = baseUrl.Replace("PaymentConnector.html", "ADCPPaymentConnector.html");
 
-            string url = settingValues.First(x => x.DetailID == ADCPConstants.ADPCURL).Value;
-            string username = settingValues.First(x => x.DetailID == ADCPConstants.ADPCUserName).Value;
-            string password = settingValues.First(x => x.DetailID == ADCPConstants.ADPCPassword).Value;
-            string tenant = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value;
-
-            Requests req = new Requests();
-            string hfkey = req.GetHostedFormUrlKey(url, username, password, tenant);
+            string hfkey = Requests.GetHostedFormUrlKey(ADCPHelper.GetPCGredentials(settingValues));
             string HFSUrl = ComposeHFSUrl(settingValues, hfkey);
-
-            //string customerCD = GetCustomerCD(inputData.DocumentData.DocType, inputData.DocumentData.DocRefNbr);    //For Demo only
 
             Dictionary<string, string> parms = new Dictionary<string, string>()
             {
@@ -87,21 +79,5 @@ namespace AcumaticaDummyCreditCardPlugin
             return hFSUrl;
         }
 
-
-        private static string GetCustomerCD(string DocType, string DocRefNbr)
-        {
-            //this is for the for demo only. inputData.CustomerData is comming null to this interface unlike Hosted form Processor
-            //So in order to pass the cpid to the hosted form, we retrieve it manually.
-            ARPaymentEntry graph = PXGraph.CreateInstance<ARPaymentEntry>();
-
-            Customer customer = PXSelectJoin<Customer, InnerJoin<ARPayment,
-               On<Customer.bAccountID, Equal<ARPayment.customerID>>>,
-           Where<
-               ARPayment.docType, Equal<Required<ARPayment.docType>>,
-               And<Where<
-                   ARPayment.refNbr, Equal<Required<ARPayment.refNbr>>>>>>.Select(graph, DocType, DocRefNbr );
-
-            return customer.AcctCD;
-        }
     }
 }

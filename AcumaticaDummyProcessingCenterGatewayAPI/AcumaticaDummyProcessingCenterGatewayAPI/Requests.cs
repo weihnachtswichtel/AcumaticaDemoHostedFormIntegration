@@ -66,66 +66,8 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
 
             response = Client.PostAsync(url + "/entity/auth/logout", new StringContent(string.Empty, Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
 
-            //    var client = new ApiClient(SiteURL);
-
-            //try
-            //{
-            //    // Task.Run(() => client.Login(Username, Password, Tenant)).Wait();
-            //    client.Login(Username, Password, Tenant);
-            //client.Login(Username, Password, Tenant, null, null);
-
-            //var endpoints = Task.Run(() => client.RootGet()).Result;
-            //bool isADPCinstalled = endpoints?.Endpoints.Any(e => e.Name.StartsWith("ADPCGateway")) == true;
-            //if (isADPCinstalled)
-            //{
-            //    result += "ADPC installed on the instance";
-            //}
-            //else
-            //{
-            //    result += "ADPC is NOT installed on the instance";
-            //}
-
-            //}
-            //catch (Exception e)
-            //{
-            //    result += $"Could not connect to {SiteURL}";
-            //}
-            //finally
-            //{
-            //    Task.Run(() => client.TryLogout());
-            //}
+     
             return cp.CustomerProfileID;
-
-
-
-
-            //try
-            //{
-            //    authApi.LogIn(username, password, tenant, null, null);
-            //    var customerProfileApi = new CustomerProfileApi(authApi);
-            //    result = "Credentials correct. ";
-
-            //    var endpoints = rootAPI.RootGet();
-            //    bool isADPCinstalled = endpoints?.Endpoints.Any(e => e.Name.StartsWith("ADPCGateway")) == true;
-            //    if (isADPCinstalled)
-            //    {
-            //        result += "ADPC installed on the instance";
-            //    }
-            //    else
-            //    {
-            //        result += "ADPC is NOT installed on the instance";
-            //    }
-
-            //}
-            //catch (Exception e)
-            //{
-            //    result += $"Could not connect to {SiteURL}";
-            //}
-            //finally
-            //{
-            //    authApi.TryLogout();
-            //}
-         //   return result;
         }
 
         public CustomerProfile GetCustomerProfileByCPID(string url, string username, string password, string tenant, string customerProfileId, bool withPaymentProfiles = false)
@@ -205,24 +147,7 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
             response = Client.PostAsync(url + "/entity/auth/logout", new StringContent(string.Empty, Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
 
             return tran;
-            //return new {
-            //    Amount = tran.TransactionAmount,
-            //    AuthCode = "Capture",
-            //    //CustomerId = "AACUSTOMER",
-            //    //CcvVerificationStatus = CcvVerificationStatus.Match,
-            //    //DocNum = transactionInfo[6] + "-" + transactionInfo[7],
-            //    ExpireAfterDays = 30,
-            //    PaymentId = tran.TransactionDocument,
-            //    SubmitTime = tran.TransactionDate,
-            //    TranID = tran.TransactionID,
-            //    TranStatus = tran.TransactionStatus,
-            //    //TranType = (CCTranType)Enum.Parse(typeof(CCTranType), "0"),
-            //    ResponseReasonCode = 200,
-            //    ResponseReasonText = "Success",
-            //    CardType = "Vis",                                                        //As Card Type comes from the Processing Center
-            //    //CardTypeCode = CCCardType.Visa,
-            //    TranUID = tran.Tranuid
-            //};
+            
         }
 
         public List<Transaction> GetUnsettledTransactions(string url, string username, string password, string tenant)
@@ -285,34 +210,6 @@ namespace AcumaticaDummyProcessingCenterGatewayAPI
 
             response = Client.PostAsync(SiteURL + "/entity/auth/logout", new StringContent(string.Empty, Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
 
-            //    var client = new ApiClient(SiteURL);
-
-            //try
-            //{
-            //    // Task.Run(() => client.Login(Username, Password, Tenant)).Wait();
-            //    client.Login(Username, Password, Tenant);
-            //client.Login(Username, Password, Tenant, null, null);
-
-            //var endpoints = Task.Run(() => client.RootGet()).Result;
-            //bool isADPCinstalled = endpoints?.Endpoints.Any(e => e.Name.StartsWith("ADPCGateway")) == true;
-            //if (isADPCinstalled)
-            //{
-            //    result += "ADPC installed on the instance";
-            //}
-            //else
-            //{
-            //    result += "ADPC is NOT installed on the instance";
-            //}
-
-            //}
-            //catch (Exception e)
-            //{
-            //    result += $"Could not connect to {SiteURL}";
-            //}
-            //finally
-            //{
-            //    Task.Run(() => client.TryLogout());
-            //}
             return result;
         }
     }

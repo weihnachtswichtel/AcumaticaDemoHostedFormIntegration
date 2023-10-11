@@ -1,4 +1,3 @@
-using AcumaticaDummyProcessingCenterGatewayAPI;
 using Newtonsoft.Json.Linq;
 using PX.CCProcessingBase.Interfaces.V2;
 using PX.Common;
@@ -7,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CSharp;
 using Acumatica.ADPCGateway.Model;
+using Acumatica.ADPCGateway;
 
 namespace AcumaticaDummyCreditCardPlugin
 {
@@ -22,15 +22,7 @@ namespace AcumaticaDummyCreditCardPlugin
         //Method called on vaulting of the Credit Card when there is no CustomerPayment Profile created on Acumatica for the customer.
         public string CreateCustomerProfile(CustomerData customerData)
         {
-            //customerData.CustomerCD + "CCPID" use single static one for simplicity
-            //return ProcessingCenterGateway.CreateCustomerProfileByCustomerCD(customerData.CustomerCD);
-            string url = settingValues.First(x => x.DetailID == ADCPConstants.ADPCURL).Value;
-            string username = settingValues.First(x => x.DetailID == ADCPConstants.ADPCUserName).Value;
-            string password = settingValues.First(x => x.DetailID == ADCPConstants.ADPCPassword).Value;
-            string tenant = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value;
-
-            Requests req = new Requests();
-            string result = req.GetCreateCustomerProfileByCustomerCD(url, username, password, tenant, customerData.CustomerCD, customerData.CustomerName, customerData.Email);
+            string result = Requests.GetCreateCustomerProfileByCustomerCD(ADCPHelper.GetPCGredentials(settingValues), customerData.CustomerCD, customerData.CustomerName, customerData.Email);
             return result;
         }
 
@@ -56,13 +48,8 @@ namespace AcumaticaDummyCreditCardPlugin
 
         public IEnumerable<CreditCardData> GetAllPaymentProfiles(string customerProfileId)
         {
-            string url = settingValues.First(x => x.DetailID == ADCPConstants.ADPCURL).Value;
-            string username = settingValues.First(x => x.DetailID == ADCPConstants.ADPCUserName).Value;
-            string password = settingValues.First(x => x.DetailID == ADCPConstants.ADPCPassword).Value;
-            string tenant = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value;
 
-            Requests req = new Requests();
-            CustomerProfile cp = req.GetCustomerProfileByCPID(url, username, password, tenant, customerProfileId, true);
+            CustomerProfile cp = Requests.GetCustomerProfileByCPID(ADCPHelper.GetPCGredentials(settingValues), customerProfileId, true);
             
             List<CreditCardData> ccdList = new List<CreditCardData>();
 
@@ -108,13 +95,7 @@ namespace AcumaticaDummyCreditCardPlugin
 
         public CustomerData GetCustomerProfile(string customerProfileId)
         {
-            string url = settingValues.First(x => x.DetailID == ADCPConstants.ADPCURL).Value;
-            string username = settingValues.First(x => x.DetailID == ADCPConstants.ADPCUserName).Value;
-            string password = settingValues.First(x => x.DetailID == ADCPConstants.ADPCPassword).Value;
-            string tenant = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value;
-
-            Requests req = new Requests();
-            CustomerProfile cp = req.GetCustomerProfileByCPID(url, username, password, tenant, customerProfileId);
+            CustomerProfile cp = Requests.GetCustomerProfileByCPID(ADCPHelper.GetPCGredentials(settingValues), customerProfileId);
 
             CustomerData cd = new CustomerData();
             cd.CustomerName = cp.CustomerDescription;
@@ -129,14 +110,8 @@ namespace AcumaticaDummyCreditCardPlugin
 
         public CreditCardData GetPaymentProfile(string customerProfileId, string paymentProfileId)
         {
-            //Dictionary<string, string> responseFromProcessingCenter = ProcessingCenterGateway.GetSomeCardDetailsByToken(paymentProfileId);
-            string url = settingValues.First(x => x.DetailID == ADCPConstants.ADPCURL).Value;
-            string username = settingValues.First(x => x.DetailID == ADCPConstants.ADPCUserName).Value;
-            string password = settingValues.First(x => x.DetailID == ADCPConstants.ADPCPassword).Value;
-            string tenant = settingValues.First(x => x.DetailID == ADCPConstants.ADPCTenant).Value;
 
-            Requests req = new Requests();
-            CustomerProfile cp = req.GetCustomerProfileByCPID(url, username, password, tenant, customerProfileId, true);
+            CustomerProfile cp = Requests.GetCustomerProfileByCPID(ADCPHelper.GetPCGredentials(settingValues), customerProfileId, true);
 
             PaymentProfiles pp = cp.PaymentProfiles.Where(p => p.PaymentProfileID.ToString() == paymentProfileId).FirstOrDefault();
 
@@ -149,23 +124,6 @@ namespace AcumaticaDummyCreditCardPlugin
                     CardExpirationDate = pp.CardExpirationDate ?? DateTime.Now.AddMonths(20)
                 };
             }
-
-
-
-            //return new CreditCardData()
-            //{
-            //    //PaymentProfileID = responseFromProcessingCenter["Token"],
-            //    //CardNumber = responseFromProcessingCenter["LastFour"],
-            //    //CardExpirationDate = new DateTime(1970, 1, 1).AddMilliseconds(double.Parse(responseFromProcessingCenter["ExpDate"])),
-            //    //CardType = responseFromProcessingCenter["CardType"],                                                       //As Card Type comes from the Processing Center
-            //    //CardTypeCode = ADCPHelper.MapCardType[responseFromProcessingCenter["CardType"]]                              //As Acumatica Internal enum   
-
-            //    PaymentProfileID = paymentProfileId,
-            //    CardNumber = "4111",
-            //    CardExpirationDate = DateTime.Now.AddMonths(20),
-
-            //};
-        //}
 
         public void UpdateCustomerProfile(CustomerData customerData)
         {
