@@ -22,7 +22,7 @@ namespace AcumaticaDummyProcessingCenter
         typeof(ADPCPaymentProfile.cardLastFour),
         typeof(ADPCPaymentProfile.name),
     })]
-    [PXDBDefault()]
+    [PXDefault()]
     [PXParent(typeof(SelectFrom<ADPCPaymentProfile>.
        Where<ADPCPaymentProfile.paymentProfileID.
        IsEqual<ADPCTransaction.paymentProfileID.FromCurrent>>))]
@@ -34,7 +34,7 @@ namespace AcumaticaDummyProcessingCenter
     #region CustomerProfileID
 
     [PXDBString(10, IsUnicode = true, InputMask = "")]
-    [PXDBDefault(typeof(Search<ADPCPaymentProfile.customerProfileID, Where<ADPCPaymentProfile.paymentProfileID.IsEqual<ADPCTransaction.paymentProfileID.FromCurrent>>>), PersistingCheck = PXPersistingCheck.Nothing)]
+    [PXDefault(typeof(Search<ADPCPaymentProfile.customerProfileID, Where<ADPCPaymentProfile.paymentProfileID.IsEqual<paymentProfileID.FromCurrent>>>))]
     [PXUIField(DisplayName = "Customer Profile ID", Enabled = false, IsReadOnly = true)]
     public virtual string CustomerProfileID { get; set; }
     public abstract class customerProfileID : PX.Data.BQL.BqlString.Field<customerProfileID> { }

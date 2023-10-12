@@ -98,10 +98,9 @@ namespace AcumaticaDummyCreditCardPlugin
                 ResponseReasonCode = 200,
                 ResponseReasonText = "Success",
                 CardType = tran.PaymentProfileIDCardType,                                                        //As Card Type comes from the Processing Center
-                CardTypeCode = ADCPHelper.MapCardType[tran.PaymentProfileIDCardType],                              //As Acumatica Internal enum                             //As Acumatica Internal enum  
-                                                                                                                   //  TranUID = Guid.Parse(string.Format("{0}-{1}-{2}-{3}-{4}", transactionInfo[8], transactionInfo[9], transactionInfo[10], transactionInfo[11], transactionInfo[12])) //Setting TranUid returned from Processing Center
-                TranUID = tran.Tranuid
-            };                                                                                                                                                                    //Unlucky initial choice of delimiter for this project - Guid had to be glued together here
+                CardTypeCode = ADCPHelper.MapCardType[tran.PaymentProfileIDCardType],                            //As Acumatica Internal enum                            
+                TranUID = tran.Tranuid                                                                           //Setting TranUid returned from Processing Center
+            };                                                                                         
             tdList.Add(td);
 
             return tdList;

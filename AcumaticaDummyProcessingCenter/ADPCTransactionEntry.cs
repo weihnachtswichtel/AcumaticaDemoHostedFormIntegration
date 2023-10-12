@@ -9,14 +9,19 @@ namespace AcumaticaDummyProcessingCenter
     public class ADPCTransactionEntry : PXGraph<ADPCTransactionEntry, ADPCTransaction>
     {
 
-        public PXSave<ADPCTransaction> Save;
-        public PXCancel<ADPCTransaction> Cancel;
         public PXSetup<ADPCSetup> Setup;
 
 
         public PXSelect<ADPCTransaction> Transaction;
         public PXSelect<ADPCPaymentProfile> PaymentProfile;
         public SelectFrom<ADPCTransactionHistory>.Where<ADPCTransactionHistory.transactionID.IsEqual<ADPCTransaction.transactionID.FromCurrent>>.OrderBy<ADPCTransactionHistory.changeDate.Desc>.View TransactionHistory;
+
+        protected virtual void _(Events.FieldUpdated<ADPCTransaction, ADPCTransaction.paymentProfileID> e) {
+            if (e != null && string.IsNullOrEmpty(e.Row.CustomerProfileID))
+            {
+                e.Cache.SetDefaultExt<ADPCTransaction.customerProfileID>(e.Row);
+            }
+        }
 
         public override void Persist()
         {

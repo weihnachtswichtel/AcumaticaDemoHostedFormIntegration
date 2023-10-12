@@ -82,7 +82,6 @@
     <Compile Include="ADCPProfileProcessor.cs" />
     <Compile Include="ADCPTransactionGetter.cs" />
     <Compile Include="ADCPTransactionProcessor.cs" />
-    <Compile Include="ProcessingCenterGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

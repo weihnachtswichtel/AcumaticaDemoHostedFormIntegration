@@ -33,12 +33,12 @@ namespace AcumaticaDummyCreditCardPlugin
 
         public void DeleteCustomerProfile(string customerProfileId)
         {
-            ProcessingCenterGateway.DeleteCustomerProfileById(customerProfileId);
+            throw new System.NotImplementedException();
         }
 
         public void DeletePaymentProfile(string customerProfileId, string paymentProfileId)
         {
-            ProcessingCenterGateway.DeletePaymentProfileById(customerProfileId, paymentProfileId);
+            throw new System.NotImplementedException();
         }
 
         public IEnumerable<CustomerData> GetAllCustomerProfiles()
