@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>CL Payment Communicator</title>
+<script type="text/javascript">
+
+	function resize(){
+		var params = Object.fromEntries(new URLSearchParams(window.location.search));
+		if (!isNaN(params.Width) && parseInt(params.Width)>399 && !isNaN(params.Height) && parseInt(params.Height)>299){
+			parent.document.getElementById('paymentPanel').style.width = params.Width + 'px';
+			parent.document.getElementById('paymentPanel_cont').style.width = params.Width + 'px';
+			parent.document.getElementById('paymentPanel').style.height = params.Height + 'px';
+			parent.document.getElementById('paymentPanel_cont').style.height = params.Height + 'px';
+		}
+	}
+
+	function SendToPC(){
+	
+		var params = Object.fromEntries(new URLSearchParams(window.location.search));
+		WHUrl = params.HFSKey;
+		
+		var xmlhttp = new XMLHttpRequest();
+				
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == XMLHttpRequest.DONE) { 
+			   if (xmlhttp.status == 200) {
+				 
+				   window.parent.px_callback.paymentCallback('action=transactResponse&response=' + xmlhttp.responseText);
+
+			   }
+			   else if (xmlhttp.status == 400) {
+				  alert('There was an error 400');
+			   }
+			   else {
+				   alert('something else other than 200 was returned' + xmlhttp.status);
+			   }
+			}
+		};
+		
+		xmlhttp.open("POST", WHUrl);
+		xmlhttp.setRequestHeader("Content-Type", "application/json");
+		var data = Object.fromEntries(new URLSearchParams(window.location.search));
+		data.Cardtype = document.getElementById('cardTypeSelector').value;	
+		data.Card = document.getElementById('card').value;	
+		data.ExpDate = document.getElementById('expdate').value;	
+		xmlhttp.send(JSON.stringify(data));		
+	}
+
+	
+</script>
+</head>
+<body>
+<div id="inRequest"></div>
+<div>
+	<input type="text" size="40" id="card" value="4111111111111111"><br>
+	<input type="text" size="40" id="expdate" value="12/25"><br>
+	<select id="cardTypeSelector">
+		<option selected value="VIS">Visa</option>
+		<option  value="MSC">MasterCard</option>
+		<option value="AME">American Express</option>
+		<option value="UNI">UnionPay</option>
+	</select><br>
+	<div id="procResult">
+	The transaction should be: 	
+	<select id="procResultSelector">
+		<option selected value="0">Approved</option>
+		<option  value="1">Declined</option>
+		<option value="2">Error</option>
+		<option value="3">HeldForReview</option>
+		<option value="4">Expired</option>
+		<option value="5">Unknown</option>
+		<option value="6">SettledSuccessfully</option>
+		<option value="7">Voided</option>
+		<option value="8">RefundSettledSuccessfully</option>
+		<option value="9">SettlementError</option>
+		<option value="10">GeneralError</option>
+	</select><br></div>
+	<input type="button" id="Send" value="VaultCard" onclick="SendToPC();">
+
+</div>
+</body>
+<script type="text/javascript">
+	resize();
+	document.getElementById("inRequest").innerHTML = "Parameters received from Acumatica: </br></br>" + " " + window.location.search.substring(1).replaceAll('&', '<br>');
+
+    if (!(window.location.search.substring(1).includes("CreateOnly"))){
+		document.getElementById("Send").Value = "Vault the Card";
+	}
+	else
+	{ 
+		document.getElementById("Send").Value = "Pay";
+		//disable the procResult on HostedForm for CustomerPaymentMethod
+		document.getElementById("procResult").style.visibility = 'hidden';
+	}
+
+</script>
+</html>

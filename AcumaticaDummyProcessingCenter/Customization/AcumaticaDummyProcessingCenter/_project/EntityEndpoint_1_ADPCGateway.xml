@@ -1,0 +1,177 @@
+﻿<EntityEndpoint>
+    <Endpoint xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="ADPCGateway" version="1" systemContractVersion="4" xmlns="http://www.acumatica.com/entity/maintenance/5.31">
+        <TopLevelEntity name="CustomerProfile" screen="ADPC3010">
+            <Fields>
+                <Field name="CustomerDescription" type="StringValue" />
+                <Field name="CustomerName" type="StringValue" />
+                <Field name="CustomerProfileID" type="StringValue" />
+                <Field name="Email" type="StringValue" />
+                <Field name="PaymentProfiles" type="PaymentProfiles[]" />
+            </Fields>
+            <Mappings>
+                <Mapping field="CustomerDescription">
+                    <To object="CustomerProfile" field="CustomerDescription" />
+                </Mapping>
+                <Mapping field="CustomerName">
+                    <To object="CustomerProfile" field="CustomerName" />
+                </Mapping>
+                <Mapping field="CustomerProfileID">
+                    <To object="CustomerProfile" field="CustomerProfileID" />
+                </Mapping>
+                <Mapping field="Email">
+                    <To object="CustomerProfile" field="Email" />
+                </Mapping>
+                <Mapping field="PaymentProfiles">
+                    <Mapping field="Address">
+                        <To object="PaymentProfiles" field="Address" />
+                    </Mapping>
+                    <Mapping field="PaymentProfileID">
+                        <To object="PaymentProfiles" field="PaymentProfileID" />
+                    </Mapping>
+                    <Mapping field="Phone">
+                        <To object="PaymentProfiles" field="Phone" />
+                    </Mapping>
+                    <Mapping field="PostalCode">
+                        <To object="PaymentProfiles" field="PostalCode" />
+                    </Mapping>
+                    <Mapping field="State">
+                        <To object="PaymentProfiles" field="State" />
+                    </Mapping>
+                    <Mapping field="Cardbin">
+                        <To object="PaymentProfiles" field="Cardbin" />
+                    </Mapping>
+                    <Mapping field="CardDescription">
+                        <To object="PaymentProfiles" field="CardDescription" />
+                    </Mapping>
+                    <Mapping field="CardExpirationDate">
+                        <To object="PaymentProfiles" field="CardExpirationDate" />
+                    </Mapping>
+                    <Mapping field="CardLastFour">
+                        <To object="PaymentProfiles" field="CardLastFour" />
+                    </Mapping>
+                    <Mapping field="CardType">
+                        <To object="PaymentProfiles" field="CardType" />
+                    </Mapping>
+                    <Mapping field="City">
+                        <To object="PaymentProfiles" field="City" />
+                    </Mapping>
+                    <Mapping field="CustomerProfileID">
+                        <To object="PaymentProfiles" field="CustomerProfileID" />
+                    </Mapping>
+                    <Mapping field="Name">
+                        <To object="PaymentProfiles" field="Name" />
+                    </Mapping>
+                </Mapping>
+            </Mappings>
+        </TopLevelEntity>
+        <TopLevelEntity name="HostedFormService" screen="SM304000">
+            <Fields>
+                <Field name="Active" type="BooleanValue" />
+                <Field name="ImplementationClass" type="StringValue" />
+                <Field name="Predefined" type="BooleanValue" />
+                <Field name="URL" type="StringValue" />
+                <Field name="webHookID" type="StringValue" />
+                <Field name="WebhookName" type="StringValue" />
+            </Fields>
+            <Mappings>
+                <Mapping field="ImplementationClass">
+                    <To object="Webhook" field="Handler" />
+                </Mapping>
+                <Mapping field="Active">
+                    <To object="Webhook" field="IsActive" />
+                </Mapping>
+                <Mapping field="WebhookName">
+                    <To object="Webhook" field="Name" />
+                </Mapping>
+                <Mapping field="URL">
+                    <To object="Webhook" field="Url" />
+                </Mapping>
+                <Mapping field="Predefined">
+                    <To object="Webhook" field="IsSystem" />
+                </Mapping>
+                <Mapping field="webHookID">
+                    <To object="Webhook" field="WebHookID" />
+                </Mapping>
+            </Mappings>
+        </TopLevelEntity>
+        <Detail name="PaymentProfiles">
+            <Fields>
+                <Field name="Address" type="StringValue" />
+                <Field name="Cardbin" type="StringValue" />
+                <Field name="CardDescription" type="StringValue" />
+                <Field name="CardExpirationDate" type="DateTimeValue" />
+                <Field name="CardLastFour" type="StringValue" />
+                <Field name="CardType" type="StringValue" />
+                <Field name="City" type="StringValue" />
+                <Field name="CustomerProfileID" type="StringValue" />
+                <Field name="Name" type="StringValue" />
+                <Field name="PaymentProfileID" type="GuidValue" />
+                <Field name="Phone" type="StringValue" />
+                <Field name="PostalCode" type="StringValue" />
+                <Field name="State" type="StringValue" />
+            </Fields>
+        </Detail>
+        <TopLevelEntity name="Transaction" screen="ADPC3020">
+            <Fields>
+                <Field name="AuthorizationNbr" type="StringValue" />
+                <Field name="CustomerProfileID" type="StringValue" />
+                <Field name="PaymentProfileID" type="GuidValue" />
+                <Field name="PaymentProfileIDCardType" type="StringValue" />
+                <Field name="TransactionAmount" type="DecimalValue" />
+                <Field name="TransactionCurrency" type="StringValue" />
+                <Field name="TransactionDate" type="DateTimeValue" />
+                <Field name="TransactionDescription" type="StringValue" />
+                <Field name="TransactionDocument" type="StringValue" />
+                <Field name="TransactionExpirationDate" type="DateTimeValue" />
+                <Field name="TransactionID" type="StringValue" />
+                <Field name="TransactionStatus" type="StringValue" />
+                <Field name="TransactionType" type="StringValue" />
+                <Field name="Tranuid" type="GuidValue" />
+            </Fields>
+            <Mappings>
+                <Mapping field="AuthorizationNbr">
+                    <To object="Transaction" field="AuthorizationNbr" />
+                </Mapping>
+                <Mapping field="TransactionStatus">
+                    <To object="Transaction" field="TransactionStatus" />
+                </Mapping>
+                <Mapping field="Tranuid">
+                    <To object="Transaction" field="Tranuid" />
+                </Mapping>
+                <Mapping field="TransactionType">
+                    <To object="Transaction" field="TransactionType" />
+                </Mapping>
+                <Mapping field="CustomerProfileID">
+                    <To object="Transaction" field="CustomerProfileID" />
+                </Mapping>
+                <Mapping field="PaymentProfileIDCardType">
+                    <To object="Transaction" field="PaymentProfileID%CardType" />
+                </Mapping>
+                <Mapping field="PaymentProfileID">
+                    <To object="Transaction" field="PaymentProfileID" />
+                </Mapping>
+                <Mapping field="TransactionAmount">
+                    <To object="Transaction" field="TransactionAmount" />
+                </Mapping>
+                <Mapping field="TransactionCurrency">
+                    <To object="Transaction" field="TransactionCurrency" />
+                </Mapping>
+                <Mapping field="TransactionDate">
+                    <To object="Transaction" field="TransactionDate" />
+                </Mapping>
+                <Mapping field="TransactionDescription">
+                    <To object="Transaction" field="TransactionDescription" />
+                </Mapping>
+                <Mapping field="TransactionDocument">
+                    <To object="Transaction" field="TransactionDocument" />
+                </Mapping>
+                <Mapping field="TransactionExpirationDate">
+                    <To object="Transaction" field="TransactionExpirationDate" />
+                </Mapping>
+                <Mapping field="TransactionID">
+                    <To object="Transaction" field="TransactionID" />
+                </Mapping>
+            </Mappings>
+        </TopLevelEntity>
+    </Endpoint>
+</EntityEndpoint>

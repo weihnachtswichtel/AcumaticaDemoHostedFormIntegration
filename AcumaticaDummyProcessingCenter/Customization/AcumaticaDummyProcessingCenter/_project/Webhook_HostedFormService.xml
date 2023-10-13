@@ -1,0 +1,13 @@
+﻿<Webhook>
+    <data-set>
+        <relations format-version="3" relations-version="20160101" main-table="WebHook" />
+        <layout>
+            <table name="WebHook" />
+        </layout>
+        <data>
+            <WebHook>
+                <row WebHookID="5cae33df-22db-42f1-8539-f38f40a02481" Name="HostedFormService" Handler="AcumaticaDummyProcessingCenter.ADPCHostedFormWebHookHandler" IsActive="1" IsSystem="0" RequestLogLevel="0" RequestRetainCount="10" NoteID="9edaa146-1c69-ee11-8d2c-00090ffe0001" />
+            </WebHook>
+        </data>
+    </data-set>
+</Webhook>

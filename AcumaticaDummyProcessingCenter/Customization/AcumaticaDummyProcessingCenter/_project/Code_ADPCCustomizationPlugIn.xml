@@ -1,0 +1,102 @@
+﻿<Graph ClassName="ADPCCustomizationPlugIn" Source="#CDATA" IsNew="True" FileType="NewFile">
+    <CDATA name="Source"><![CDATA[using System;
+using PX.Data;
+using Customization;
+using PX.Objects.CS;
+
+namespace AcumaticaDummyProcessingCenter
+{
+  //Customization plugin is used to execute custom actions after customization project was published  
+  public class ADPCCustomizationPlugIn : CustomizationPlugin
+  {
+     public override void OnPublished()
+        {
+
+        }
+
+        //This method is executed after the customization has been published and the website is restarted.  
+        public override void UpdateDatabase()
+        {
+            WriteLog("Acumatica Dummy Processing Center Plugin started working.");
+            string CPIDNumSeq = "ADPCCPID";
+            string TranNumSeq = "ADPCTRAN";
+
+            ADPCSetupMaint ADPCMaint = PXGraph.CreateInstance<ADPCSetupMaint>();
+            var setup = ADPCMaint.Setup.Current;
+            Numbering CPIDNumbering = PXSelect<Numbering, Where<Numbering.numberingID, Equal<Required<Numbering.numberingID>>>>.Select(ADPCMaint, CPIDNumSeq);
+            if (CPIDNumbering == null)
+            {
+                NumberingMaint numberingMaint = PXGraph.CreateInstance<NumberingMaint>();
+                Numbering newNumbering = new Numbering()
+                {
+                    NumberingID = CPIDNumSeq,
+                    NewSymbol = "<NEW>",
+                    Descr = "ADPC customer profile ID",
+                };
+                newNumbering = numberingMaint.Header.Insert(newNumbering);
+                if (newNumbering != null)
+                {
+                    NumberingSequence newSequence = new NumberingSequence()
+                    {
+                        StartNbr = "CPID100000",
+                        EndNbr = "CPID999999",
+                        LastNbr = "CPID100000",
+                        WarnNbr = "CPID999899",
+                    };
+                    newSequence = numberingMaint.Sequence.Insert(newSequence);
+                    try
+                    {
+                        if (newSequence != null)
+                        {
+                            numberingMaint.Save.Press();
+                        }
+                    }
+                    catch (PXBaseRedirectException)
+                    {
+                        WriteLog("Failed. Could not save the Numbering Sequence");
+                    }
+                    setup.CPIDNumberingID = newSequence.NumberingID;
+                }
+            }
+
+            Numbering TranNumbering = PXSelect<Numbering, Where<Numbering.numberingID, Equal<Required<Numbering.numberingID>>>>.Select(ADPCMaint, TranNumSeq);
+            if (TranNumbering == null)
+            {
+                NumberingMaint numberingMaint = PXGraph.CreateInstance<NumberingMaint>();
+                Numbering newNumbering = new Numbering
+                {
+                    NumberingID = TranNumSeq,
+                    NewSymbol = "<NEW>",
+                    Descr = "ADPC Transaction ID"
+                };
+                newNumbering = numberingMaint.Header.Insert(newNumbering);
+                if (newNumbering != null)
+                {
+                    NumberingSequence newSequence = new NumberingSequence
+                    {
+                        StartNbr = "TRAN000000000010",
+                        EndNbr = "TRAN99999999999",
+                        LastNbr = "TRAN000000000010",
+                        WarnNbr = "TRAN99999999899"
+                    };
+                    newSequence = numberingMaint.Sequence.Insert(newSequence);
+                    try
+                    {
+                        if (newSequence != null)
+                        {
+                            numberingMaint.Save.Press();
+                        }
+                    }
+                    catch (PXBaseRedirectException)
+                    {
+                        WriteLog($"Failed. Error: IIG Registration has expired");
+                    }
+                    setup.CPIDNumberingID = newSequence.NumberingID;
+                }
+            }
+            ADPCMaint.Setup.Update(setup);
+            ADPCMaint.Save.Press();
+        }
+  }
+}]]></CDATA>
+</Graph>
