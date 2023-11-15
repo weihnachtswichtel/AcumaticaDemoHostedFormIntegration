@@ -1,7 +1,7 @@
 ﻿<Sql TableName="ADPCPaymentProfile" TableSchemaXml="#CDATA">
     <CDATA name="TableSchemaXml"><![CDATA[<table name="ADPCPaymentProfile">
   <col name="CompanyID" type="Int" default="Zero" />
-  <col name="CustomerProfileID" type="NVarChar(10)" />
+  <col name="CustomerProfileID" type="NVarChar(15)" />
   <col name="PaymentProfileID" type="UniqueIdentifier" />
   <col name="CardType" type="Char(1)" nullable="true" />
   <col name="CardExpirationDate" type="DateTime" nullable="true" />

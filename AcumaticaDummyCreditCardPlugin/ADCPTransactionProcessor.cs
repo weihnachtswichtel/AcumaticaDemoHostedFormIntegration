@@ -44,7 +44,7 @@ namespace AcumaticaDummyCreditCardPlugin
                 ResponseReasonCode = "200",
                 ResponseReasonText = "Success",
                 AuthorizationNbr = tran.AuthorizationNbr,
-                ExpireAfterDays = 30, //tran.TransactionExpirationDate == null || tran.TransactionDate == null? 30 : (tran.TransactionExpirationDate.Value-tran.TransactionDate).Value.Days,
+                ExpireAfterDays = (tran.TransactionExpirationDate.Value - tran.TransactionDate.Value)?.Days,
                 CcvVerificatonStatus = CcvVerificationStatus.Match,
             };
             return processingResult;

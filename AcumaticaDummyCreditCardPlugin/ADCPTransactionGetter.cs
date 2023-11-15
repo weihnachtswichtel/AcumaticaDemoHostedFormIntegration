@@ -23,15 +23,16 @@ namespace AcumaticaDummyCreditCardPlugin
         {
             Transaction tran = Requests.GetTransactionByID(ADCPHelper.GetPCGredentials(settingValues), transactionId);
 
+
             TransactionData td = new TransactionData
             {
                 Amount = (decimal)tran.TransactionAmount.Value,
                 AuthCode = tran.AuthorizationNbr,
-                // CustomerId = "AACUSTOMER",
+                //   CustomerId =  "AACUSTOMER",
                 //   CcvVerificationStatus = CcvVerificationStatus.Match,
                 PaymentId = tran.PaymentProfileID.ToString(),
                 DocNum = tran.TransactionDocument,
-                ExpireAfterDays = 30,
+                ExpireAfterDays = (tran.TransactionExpirationDate.Value - tran.TransactionDate.Value)?.Days,
                 SubmitTime = (DateTime)tran.TransactionDate.Value,
                 TranID = tran.TransactionID,
                 TranStatus = ADCPHelper.MapTranStatus[tran.TransactionStatus],
@@ -89,7 +90,7 @@ namespace AcumaticaDummyCreditCardPlugin
                 //CustomerId = "AACUSTOMER",
                 CcvVerificationStatus = CcvVerificationStatus.Match,
                 DocNum = tran.TransactionDocument,
-                ExpireAfterDays = 30,
+                ExpireAfterDays = (tran.TransactionExpirationDate.Value - tran.TransactionDate.Value)?.Days,
                 PaymentId = tran.PaymentProfileID.ToString(),
                 SubmitTime = (DateTime)tran.TransactionDate.Value,
                 TranID = tran.TransactionID,

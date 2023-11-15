@@ -10,7 +10,7 @@ namespace AcumaticaDummyProcessingCenter
   public class ADPCCustomerProfile : IBqlTable
   {
     #region CustomerProfileID
-    [PXDBString(10,  IsKey = true, IsUnicode = true, InputMask = ">CCCCCCCCCC")]
+    [PXDBString(15,  IsKey = true, IsUnicode = true, InputMask = ">CCCCCCCCCCCCCCC")]
     [PXDefault(PersistingCheck = PXPersistingCheck.NullOrBlank)]
     [AutoNumber(typeof(ADPCSetup.cPIDNumberingID), typeof (AccessInfo.businessDate))]
     [PXSelector(typeof(Search<ADPCCustomerProfile.customerProfileID >))]

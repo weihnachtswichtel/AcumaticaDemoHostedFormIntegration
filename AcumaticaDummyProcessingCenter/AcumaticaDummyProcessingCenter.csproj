@@ -102,42 +102,7 @@
     <Compile Include="ADPCTransaction.cs" />
     <Compile Include="ADPCTransactionEntry.cs" />
     <Compile Include="ADPCTransactionHistory.cs" />
-    <Compile Include="Customization\AcumaticaDummyProcessingCenter\Pages\AD\ADPC1000.aspx.cs">
-      <DependentUpon>ADPC1000.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Customization\AcumaticaDummyProcessingCenter\Pages\AD\ADPC3010.aspx.cs">
-      <DependentUpon>ADPC3010.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Customization\AcumaticaDummyProcessingCenter\Pages\AD\ADPC3020.aspx.cs">
-      <DependentUpon>ADPC3020.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\AcumaticaDummyProcessingCenter.zip" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\Bin\AcumaticaDummyProcessingCenter.dll" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\Bin\AcumaticaDummyProcessingCenter.pdb" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\Pages\AD\ADPC1000.aspx" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\Pages\AD\ADPC3010.aspx" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\Pages\AD\ADPC3020.aspx" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\Code_ADPCCustomizationPlugIn.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\EntityEndpoint_1_ADPCGateway.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\Info.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\pages_ad_adpc1000_aspx.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\pages_ad_adpc3010_aspx.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\pages_ad_adpc3020_aspx.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\ProjectMetadata.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\SiteMapNode_8814cfec_c3cd_4c72_8cde_29d1b2f30225.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\SiteMapNode_95b0baba_c500_4e00_84cd_e967c3fb286b.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\SiteMapNode_b33d26b7_a5a5_4291_8dab_2a3e17ea98d1.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\Sql_ADPCCustomerProfile.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\Sql_ADPCPaymentProfile.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\Sql_ADPCSetup.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\Sql_ADPCTransaction.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\Sql_ADPCTransactionHistory.xml" />
-    <Content Include="Customization\AcumaticaDummyProcessingCenter\_project\Webhook_HostedFormService.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -85,7 +85,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Customization\AcumaticaDummyCreditCardPlugin.zip" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
@@ -97,21 +96,6 @@
       <Project>{A5AD096D-1D31-400A-AE68-0BCF07BF90E2}</Project>
       <Name>Acumatica.RESTClient.ContractBasedApi</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\Bin\Acumatica.ADPCGateway.dll" />
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\Bin\Acumatica.ADPCGateway.pdb" />
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\Bin\Acumatica.RESTClient.ContractBasedApi.dll" />
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\Bin\Acumatica.RESTClient.dll" />
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\Bin\AcumaticaDummyCreditCardPlugin.dll" />
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\Bin\AcumaticaDummyCreditCardPlugin.pdb" />
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\Bin\JsonSubTypes.dll" />
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\Frames\ADCPPaymentConnector.html" />
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\_project\File_Bin_Acumatica_RESTClient_ContractBasedApi_dll.xml" />
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\_project\File_Bin_Acumatica_RESTClient_dll.xml" />
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\_project\File_Bin_JsonSubTypes_dll.xml" />
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\_project\Info.xml" />
-    <Content Include="Customization\AcumaticaDummyCreditCardPlugin\_project\ProjectMetadata.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

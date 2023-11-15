@@ -3,6 +3,7 @@ using PX.Data;
 using PX.Data.BQL.Fluent;
 using System.Linq;
 using System.Collections;
+using PX.Objects.SO;
 
 namespace AcumaticaDummyProcessingCenter
 {
@@ -34,6 +35,16 @@ namespace AcumaticaDummyProcessingCenter
                 hist.TransactionStatus = Transaction.Current.TransactionStatus;
                 hist.ChangeDate = DateTime.Now;
                 TransactionHistory.Insert(hist);
+            }
+
+            if(Transaction.Current.TransactionType == "A")
+            {
+                if (Transaction.Current.TransactionExpirationDate == null) {
+                    Transaction.Current.TransactionExpirationDate = DateTime.UtcNow.AddDays(20);
+                }
+                if (string.IsNullOrEmpty(Transaction.Current.AuthorizationNbr)){
+                    Transaction.Current.AuthorizationNbr = "123456";
+                }
             }
 
             base.Persist();

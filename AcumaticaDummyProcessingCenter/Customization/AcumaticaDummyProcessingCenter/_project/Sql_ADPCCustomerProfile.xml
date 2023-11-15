@@ -1,7 +1,7 @@
 ﻿<Sql TableName="ADPCCustomerProfile" TableSchemaXml="#CDATA">
     <CDATA name="TableSchemaXml"><![CDATA[<table name="ADPCCustomerProfile">
   <col name="CompanyID" type="Int" default="Zero" />
-  <col name="CustomerProfileID" type="NVarChar(10)" />
+  <col name="CustomerProfileID" type="NVarChar(15)" />
   <col name="CustomerName" type="NVarChar(30)" />
   <col name="Email" type="NVarChar(255)" nullable="true" />
   <col name="CustomerDescription" type="NVarChar(255)" nullable="true" />

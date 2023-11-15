@@ -33,7 +33,7 @@ namespace AcumaticaDummyProcessingCenter
    
     #region CustomerProfileID
 
-    [PXDBString(10, IsUnicode = true, InputMask = "")]
+    [PXDBString(15, IsUnicode = true, InputMask = "")]
     [PXDefault(typeof(Search<ADPCPaymentProfile.customerProfileID, Where<ADPCPaymentProfile.paymentProfileID.IsEqual<paymentProfileID.FromCurrent>>>))]
     [PXUIField(DisplayName = "Customer Profile ID", Enabled = false, IsReadOnly = true)]
     public virtual string CustomerProfileID { get; set; }

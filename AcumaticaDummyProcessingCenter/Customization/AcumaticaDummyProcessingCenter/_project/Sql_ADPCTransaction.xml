@@ -1,7 +1,7 @@
 ﻿<Sql TableName="ADPCTransaction" TableSchemaXml="#CDATA">
     <CDATA name="TableSchemaXml"><![CDATA[<table name="ADPCTransaction">
   <col name="CompanyID" type="Int" default="Zero" />
-  <col name="CustomerProfileID" type="NVarChar(10)" />
+  <col name="CustomerProfileID" type="NVarChar(15)" />
   <col name="PaymentProfileID" type="UniqueIdentifier" />
   <col name="TransactionID" type="NVarChar(15)" />
   <col name="TransactionDate" type="DateTime" />
