@@ -1,0 +1,118 @@
+﻿<Graph ClassName="ADPCCustomizationPlugIn" Source="#CDATA" IsNew="True" FileType="NewFile">
+    <CDATA name="Source"><![CDATA[using System;
+using PX.Data;
+using Customization;
+using PX.Data.BQL.Fluent;
+using PX.Objects.CS;
+
+namespace AcumaticaDummyProcessingCenter
+{
+  //Customization plugin is used to execute custom actions after customization project was published  
+  public class ADPCCustomizationPlugIn : CustomizationPlugin
+  {
+    //This method executed right after website files were updated, but before website was restarted
+    //Method invoked on each cluster node in cluster environment
+    //Method invoked only if runtimecompilation is enabled
+    //Do not access custom code published to bin folder, it may not be loaded yet
+      public override void OnPublished()
+    {
+      this.WriteLog("OnPublished Event");
+    }
+
+    //This method executed after customization was published and website was restarted.  
+    public override void UpdateDatabase()
+    {
+            WriteLog("Acumatica Dummy Processing Center Plugin started working.");
+            string CPIDNumSeq = "ADPCCPID";
+            string TranNumSeq = "ADPCTRAN";
+
+            ADPCSetupMaint ADPCMaint = PXGraph.CreateInstance<ADPCSetupMaint>();
+            var setup = new PXSelect<ADPCSetup>(ADPCMaint).SelectSingle();
+            Numbering CPIDNumbering = PXSelect<Numbering, Where<Numbering.numberingID, Equal<Required<Numbering.numberingID>>>>.Select(ADPCMaint, CPIDNumSeq);
+            if (CPIDNumbering == null)
+            {
+                NumberingMaint numberingMaint = PXGraph.CreateInstance<NumberingMaint>();
+                Numbering newNumbering = new Numbering()
+                {
+                    NumberingID = CPIDNumSeq,
+                    NewSymbol = "<NEW>",
+                    Descr = "ADPC customer profile ID",
+                };
+                newNumbering = numberingMaint.Header.Insert(newNumbering);
+                if (newNumbering != null)
+                {
+                    NumberingSequence newSequence = new NumberingSequence()
+                    {
+                        StartNbr = "CPID10000000010",
+                        EndNbr   = "CPID99999999999",
+                        LastNbr  = "CPID10000000100",
+                        WarnNbr  = "CPID99999999899",
+                    };
+                    newSequence = numberingMaint.Sequence.Insert(newSequence);
+                    try
+                    {
+                        if (newSequence != null)
+                        {
+                            numberingMaint.Save.Press();
+                            WriteLog($"Numbering Sequence {CPIDNumSeq} created");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                         WriteLog("Failed. Could not save the Numbering Sequence: " + e.Message);
+                    }
+                    setup.CPIDNumberingID = newSequence.NumberingID;
+                }
+            }
+            else {
+                WriteLog($"Numbering Sequence {CPIDNumSeq} already exists");
+                setup.CPIDNumberingID = CPIDNumSeq;
+            }
+
+            Numbering TranNumbering = PXSelect<Numbering, Where<Numbering.numberingID, Equal<Required<Numbering.numberingID>>>>.Select(ADPCMaint, TranNumSeq);
+            if (TranNumbering == null)
+            {
+                NumberingMaint numberingMaint = PXGraph.CreateInstance<NumberingMaint>();
+                Numbering newNumbering = new Numbering
+                {
+                    NumberingID = TranNumSeq,
+                    NewSymbol = "<NEW>",
+                    Descr = "ADPC Transaction ID"
+                };
+                newNumbering = numberingMaint.Header.Insert(newNumbering);
+                if (newNumbering != null)
+                {
+                    NumberingSequence newSequence = new NumberingSequence
+                    {
+                        StartNbr = "TRAN00000000010",
+                        EndNbr   = "TRAN99999999999",
+                        LastNbr  = "TRAN00000000100",
+                        WarnNbr  = "TRAN99999999899"
+                    };
+                    newSequence = numberingMaint.Sequence.Insert(newSequence);
+                    try
+                    {
+                        if (newSequence != null)
+                        {
+                            numberingMaint.Save.Press();
+                            WriteLog($"Numbering Sequence {TranNumSeq} created");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        WriteLog("Failed. Could not save the Numbering Sequence: " + e.Message);
+                    }
+                    setup.TranNumberingID = newSequence.NumberingID;
+                }
+            }  else
+            {
+                setup.TranNumberingID = TranNumSeq;
+                WriteLog($"Numbering Sequence {TranNumSeq} already exists");
+            }
+            ADPCMaint.Setup.Update(setup);
+            ADPCMaint.Save.Press();
+          WriteLog("Acumatica Dummy Processing Center Plugin finished working.");
+    }
+  }
+}]]></CDATA>
+</Graph>

@@ -5,6 +5,7 @@ using PX.Data;
 using PX.Objects.AR;
 using System;
 using System.Collections.Generic;
+using System.Web;
 using ProcessingInput = PX.CCProcessingBase.Interfaces.V2.ProcessingInput;
 
 namespace CookielessHostedForm
@@ -24,12 +25,18 @@ namespace CookielessHostedForm
 
             if (string.IsNullOrEmpty(baseUrl))
             {
-                baseUrl = PXContext.GetSlot<string>(nameof(Extentions.GetPaymentConnectorUrl));                   //Case when Hosted Payment Form called fom Sales Order Screen for Acumatica ERP version >= 2022 R1
+                baseUrl = PXContext.GetSlot<string>(nameof(Extentions.GetPaymentConnectorUrl));                   //Case when Hosted Payment Form called fom Sales Order Screen for Acumatica ERP version == 2022 R1
             }
 
             if (string.IsNullOrEmpty(baseUrl)) { 
                 baseUrl = System.Web.HttpContext.Current.GetPaymentConnectorUrl();                                //Case when Payment Form called from Payments and Applications Screen
-            } 
+            }
+
+            if (string.IsNullOrEmpty(baseUrl))
+            {
+                baseUrl = CCPaymentProcessingHelper.GetPaymentConnectorUrl(HttpContext.Current);                   //Case for Hosted Payment Form called fom Sales Order Screen for Acumatica ERP version >= 2022 R2
+            }
+
             hostedFormURL = baseUrl.Replace("PaymentConnector.html", "CLPaymentConnector.html");
 
             string customerCD = GetCustomerCD(inputData.DocumentData.DocType, inputData.DocumentData.DocRefNbr);    //For Demo only

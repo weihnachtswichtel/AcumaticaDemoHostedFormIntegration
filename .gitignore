@@ -362,3 +362,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /CookielessHostedForm.sln
 /Tests/Tests.sln
+/AcumaticaDummyCreditCardPlugin/AVSRejectOverride.cs
