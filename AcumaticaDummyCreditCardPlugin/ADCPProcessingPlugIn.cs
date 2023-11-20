@@ -39,6 +39,10 @@ namespace AcumaticaDummyCreditCardPlugin
             {
                 return new ADCPProfileCreator(settingValues) as T;
             }
+            if (typeof(T) == typeof(ICCTransactionFinder))
+            {
+                return new ADCPTransactionFinder(settingValues) as T;
+            }
             return null;
         }
 
